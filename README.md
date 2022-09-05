@@ -8,7 +8,7 @@ Please go under edit and edit this file as needed for your project
 ### Member 4 - IT21109126 - Maharanhindage V.A.R
 ### Member 5 - IT21012488 - Shavinda H.K.L (IT21012488)
 ### Member 6 - IT21011870 - Gunasekara S.N.W (IT21011870)
-### Member 7 - 
+### Member 7 - IT20611088 - Jayakody D.M.L.D (IT20611088)
 ### Member 8 - Kumari.K.A.D.H (IT21055362)
 
 #### Brief Description of Project - 
