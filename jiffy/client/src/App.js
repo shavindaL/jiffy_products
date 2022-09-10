@@ -11,11 +11,13 @@ import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from "./pages/auth/Register";
 import CustomersPage from "./pages/admin/Customers";
 
-// import './img/favicon.png';
-// import './css/font-icons.css';
-// import './css/plugins.css';
-// import './css/style.css';
-// import './css/responsive.css';
+// import './assets/img/favicon.png';
+// import './assets/css/font-icons.css';
+// import './assets/css/plugins.css';
+// import './assets/css/style.css';
+// import './assets/css/responsive.css';
+// import './assets/js/plugins.js';
+// import './assets/js/main.js';
 
 function App() {
     return(

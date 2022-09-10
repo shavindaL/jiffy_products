@@ -13,8 +13,26 @@
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/main.js"></script>
+
+    <script>
+      function getCurrentURL () {
+        return window.location.href
+      }
+      
+      // Example
+      const url = getCurrentURL()
+      if (url == 'http://localhost:3000/'){
+        document.writeln(`<link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon" />`)
+        document.writeln(`<link rel="stylesheet" href="assets/css/font-icons.css" />`)
+        document.writeln(`<link rel="stylesheet" href="assets/css/plugins.css" />`)
+        document.writeln(`<link rel="stylesheet" href="assets/css/style.css" />`)
+        document.writeln(`<link rel="stylesheet" href="assets/css/responsive.css" />`)  
+        document.writeln(`<link rel="stylesheet" href="assets/css/responsive.css" />`)  
+        document.writeln(`<link rel="stylesheet" href="assets/css/responsive.css" />`) 
+        document.write('<scr' + 'ipt type="text/javascript" src="assets/js/plugins.js"></scr' + 'ipt>');
+        document.write('<scr' + 'ipt type="text/javascript" src="assets/js/main.js"></scr' + 'ipt>');       
+      }
+    </script>
     
 </head>
   <body>
