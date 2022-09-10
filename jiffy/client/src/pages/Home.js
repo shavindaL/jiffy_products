@@ -13,7 +13,7 @@ function Home() {
             <Header />
             <CartMenu />
             <MobileMenu />
-            <div class="ltn__utilize-overlay"></div>
+            <div className="ltn__utilize-overlay"></div>
             <MainSlider />
             <ProductTab />
             <Footer />

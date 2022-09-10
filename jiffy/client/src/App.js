@@ -10,14 +10,7 @@ import ProductPage from "./pages/Shop";
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from "./pages/auth/Register";
 import CustomersPage from "./pages/admin/Customers";
-
-// import './assets/img/favicon.png';
-// import './assets/css/font-icons.css';
-// import './assets/css/plugins.css';
-// import './assets/css/style.css';
-// import './assets/css/responsive.css';
-// import './assets/js/plugins.js';
-// import './assets/js/main.js';
+import DashboardHome from './pages/dashboard/DashboardHome'
 
 function App() {
     return(
@@ -28,6 +21,7 @@ function App() {
                 <Route path="/signup" element={<RegisterPage />}/>
                 <Route path="/account" element={<AccountPage />}/>
                 <Route path="/product" element={<ProductPage />}/>
+                <Route path="/dashboard" element={<DashboardHome />}/>
                 <Route path="/customers" element={<CustomersPage />}/>
                 {/* <Route path="/register" element={<Register />}/> */}
             </Routes>
