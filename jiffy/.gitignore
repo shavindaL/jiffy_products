@@ -7,6 +7,8 @@ node_modules
 
 /client/public/assets/img
 /client/public/assets/media
+/client/public/dashboard-assets/img
+/client/public/dashboard-assets/vendor
 
 # testing
 /coverage
