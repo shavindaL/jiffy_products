@@ -1,7 +1,20 @@
 import React from 'react';
 
 function Header() {
-    return (
+  
+  const handleClick = () => {
+    // 👇️ add class to the body element
+    if (document.body.classList.contains('toggle-sidebar')){
+      document.body.classList.remove('toggle-sidebar');
+    }else{
+      document.body.classList.add('toggle-sidebar');
+    }
+    
+
+    // 👇️ toggle class on the body element
+    // document.body.classList.toggle('bg-salmon');
+  };
+  return (
         <header id="header" className="header fixed-top d-flex align-items-center">
 
     <div className="d-flex align-items-center justify-content-between">
@@ -9,7 +22,7 @@ function Header() {
         <img src={process.env.PUBLIC_URL+"/dashboard-assets/img/logo.png"} alt="" />
         <span className="d-none d-lg-block">NiceAdmin</span>
       </a>
-      <i className="bi bi-list toggle-sidebar-btn"></i>
+      <i className="bi bi-list toggle-sidebar-btn" onClick={handleClick}></i>
     </div>
     {/* <!-- End Logo --> */}
 
