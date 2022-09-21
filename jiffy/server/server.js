@@ -7,6 +7,7 @@ const app = express()
 
 const userRoutes = require('./routes/userRoutes')
 const factoryRoutes = require('./routes/factoryRoutes')
+const machineRoutes = require('./routes/machineRoutes')
 
 // middleware
 app.use(express.json())
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/users', userRoutes)
 app.use('/api/factory', factoryRoutes)
+app.use('/api/machine', machineRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
