@@ -9,19 +9,19 @@ const {
 
 const router = express.Router()
 
-// GET a single Factory
-router.get('/:id', getFactory)
+// POST a new Factory
+router.post('/', createFactory)
 
 // GET all Factories
 router.get('/', getAllFactories)
 
-// POST a new Factory
-router.post('/', createFactory)
+// GET a single Factory by ID
+router.get('/:id', getFactory)
 
-// UPDATE a Factory
+// UPDATE a Factory by ID
 router.patch('/:id', updateFactory)
-
-// DELETE a Factory
+ 
+// DELETE a Factory by ID
 router.delete('/:id', deleteFactory)
 
 module.exports = router

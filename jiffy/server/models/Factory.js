@@ -1,37 +1,37 @@
 const mongoose = require('mongoose')
 
 const FactorySchema = new mongoose.Schema({
-	id: {
+	fId: {
 		type: String,
 		required: true,
 	},
-	name: {
+	fName: {
 		type: String,
-		required: true,
+		required: true
 	},
-  location: {
+ 	fLocation: {
 		type: String,
-		required: true,
+		required: true
 	},
-	NumOfMachines: {
+	numOfMachines: {
 		type: Number,
-		required: true,
+		required: false
 	},
-	NumOfVehicles: {
+	numOfVehicles: {
 		type: Number,
-		required: true,
+		required: false
 	},
-  NumOfEmployees: {
+  	numOfEmployees: {
 		type: Number,
-		required: true,
+		required: false
 	},
-  createdDate: {
-    type: Date,
-    default: Date.now,
-    required: true,
-  },
+	createdDate: {
+		type: Date,
+		required: false,
+        default: Date.now
+	}
 })
 
 const Factory = mongoose.model('Factory', FactorySchema)
 
-module.exports = Factory;
+module.exports = Factory

@@ -13,6 +13,7 @@ import CustomersPage from "./pages/dashboard/customerManagement/CustomersPage";
 import DashboardHome from './pages/dashboard/DashboardHome'
 import CustomerAddPage from "./pages/dashboard/customerManagement/CustomerAddPage"
 import CustomerProfilePage from "./pages/dashboard/customerManagement/CustomerProfile";
+import FactoryAddPage from "./pages/dashboard/factory/FactoryAddPage";
 
 function App() {
     const reload = () => window.location.reload();
@@ -29,6 +30,7 @@ function App() {
                 <Route path="/customers" element={<CustomersPage />}/>
                 <Route path="/customer/:id" element={<CustomerProfilePage />}/>
                 <Route path="/add-customer" element={<CustomerAddPage />}/>
+                <Route path="/add-factory" element={<FactoryAddPage />}/>
             </Routes>
         </BrowserRouter>
         
