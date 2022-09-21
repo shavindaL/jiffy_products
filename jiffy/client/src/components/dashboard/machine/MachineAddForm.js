@@ -114,8 +114,8 @@ const MachineAddForm = () => {
                   </div>
 
                   <div className="text-center">
-                    <button type="submit" className="btn btn-primary">Submit</button>
                     <button type="reset" className="btn btn-secondary">Reset</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                   </div>
                 </form>
                 {/* <!-- Vertical Form --> */}
