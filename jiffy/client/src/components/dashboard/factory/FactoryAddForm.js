@@ -32,6 +32,10 @@ const FactoryAddForm = () => {
       setFId('')
       setFName('')
       setFLocation('')
+      setNumOfMachines('')
+      setNumOfVehicles('')
+      setNumOfEmployees('')
+      setCreatedDate('')
       setError(null)
       console.log('New Factory was added succefully.', json)
     }
