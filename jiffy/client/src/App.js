@@ -14,7 +14,7 @@ import DashboardHome from './pages/dashboard/DashboardHome'
 import CustomerAddPage from "./pages/dashboard/customerManagement/CustomerAddPage"
 import CustomerProfilePage from "./pages/dashboard/customerManagement/CustomerProfile";
 import FactoryAddPage from "./pages/dashboard/factory/FactoryAddPage";
-import MachineAddPage from "./pages/dashboard/factory/MachineAddPage";
+import MachineAddPage from "./pages/dashboard/machine/MachineAddPage";
 
 function App() {
     const reload = () => window.location.reload();

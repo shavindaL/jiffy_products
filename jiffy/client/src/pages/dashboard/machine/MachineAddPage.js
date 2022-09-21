@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Header from '../../../components/dashboard/Header';
-import MachineAddForm from '../../../components/dashboard/factory/MachineAddForm';
+import MachineAddForm from '../../../components/dashboard/machine/MachineAddForm';
 import Sidebar from '../../../components/dashboard/Sidebar';
 import Footer from '../../../components/dashboard/Footer';
 
