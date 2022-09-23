@@ -3,13 +3,15 @@ import { useState } from "react";
 const CustomerAddForm = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [address, setAddress] = useState('')
+  const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const user = { name, email, password }
+    const user = { name, email, address, phone, password }
 
     const response = await fetch('/api/users', {
       method: 'POST',
@@ -27,6 +29,8 @@ const CustomerAddForm = () => {
     if (response.ok) {
       setName('')
       setEmail('')
+      setAddress('')
+      setPhone('')
       setPassword('')
       setError(null)
       console.log('new user added', json)
@@ -79,6 +83,16 @@ const CustomerAddForm = () => {
                     <label for="inputEmail" className="form-label">Email</label>
                     <input type="email" className="form-control" id="inputEmail"
                       onChange={(e) => setEmail(e.target.value)} value={email} />
+                  </div>
+                  <div className="col-12">
+                    <label for="inputPhone" className="form-label">Phone</label>
+                    <input type="text" className="form-control" id="inputPhone"
+                      onChange={(e) => setPhone(e.target.value)} value={phone} />
+                  </div>
+                  <div className="col-12">
+                    <label for="inputAddress" className="form-label">Address</label>
+                    <input type="text" className="form-control" id="inputAddress"
+                      onChange={(e) => setAddress(e.target.value)} value={address} />
                   </div>
                   <div className="col-12">
                     <label for="inputPassword" className="form-label">Password</label>

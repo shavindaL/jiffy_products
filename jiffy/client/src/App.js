@@ -1,7 +1,8 @@
 //import './App.css';
 import {useState, useEffect} from "react";
-import Axios from "axios";
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+
+import { useAuthContext } from "./hooks/useAuthContext"
 
 import Home from './pages/Home';
 import AccountPage from './pages/Account';
@@ -18,6 +19,8 @@ import MachineAddPage from "./pages/dashboard/machine/MachineAddPage";
 
 function App() {
     const reload = () => window.location.reload();
+
+    const { user } = useAuthContext()
     return(
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Routes>
@@ -26,6 +29,7 @@ function App() {
                 <Route path="/signup" element={<RegisterPage />}/>
                 <Route path="/account" element={<AccountPage />}/>
                 <Route path="/product" element={<ProductPage />}/>
+                {/* <Route path="/dashboard" element={user? <DashboardHome />:<Navigate to='/login'/>}/> */}
                 <Route path="/dashboard" element={<DashboardHome />}/>
 
                 <Route path="/customers" element={<CustomersPage />}/>

@@ -1,44 +1,17 @@
 import {React, useState, useEffect} from 'react';
-import axios from "axios";
 import { Link } from "react-router-dom";
+import {useLogin} from '../../hooks/useLogin'
 
-const LoginComponent = ({ history }) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+function LoginComponent() {
 
-    useEffect(() => {
-        if (localStorage.getItem("authToken")) {
-            history.push("/");
-        }
-    }, [history]);
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const {login, error, isLoading} = useLogin()
 
-    const loginHandler = async (e) => {
-        e.preventDefault();
-
-        const config = {
-            header: {
-                "Content-Type": "application/json",
-            },
-        };
-
-        try {
-            const { data } = await axios.post(
-                "/api/auth/login",
-                { email, password },
-                config
-            );
-
-            localStorage.setItem("authToken", data.token);
-
-            history.push("/");
-        } catch (error) {
-            setError(error.response.data.error);
-            setTimeout(() => {
-                setError("");
-            }, 5000);
-        }
-    };
+    const handleSubmit = async(e) =>{
+        e.preventDefault()
+        await login(email, password)
+    }
 
     return (
         <div className="ltn__login-area pb-65">
@@ -56,13 +29,13 @@ const LoginComponent = ({ history }) => {
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="account-login-inner">
-                            <form onSubmit={loginHandler} className="ltn__form-box contact-form-box">
+                            <form onSubmit={handleSubmit} className="ltn__form-box contact-form-box">
                                 <input type="text" name="email" placeholder="Email*" 
                                 value={email} onChange={(e)=>setEmail(e.target.value)}/>
                                 <input type="password" name="password" placeholder="Password*" 
                                 value={password} onChange={(e)=>setPassword(e.target.value)}/>
                                 <div className="btn-wrapper mt-0">
-                                    <button className="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
+                                    <button disabled={isLoading} className="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
                                 </div>
                                 <div className="go-to-btn mt-20">
                                     <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
