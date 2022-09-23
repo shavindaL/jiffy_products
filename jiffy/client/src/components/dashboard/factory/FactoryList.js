@@ -39,7 +39,7 @@ function Factory() {
 
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title">Default Table</h5>
+              <h5 className="card-title">All Factories</h5>
 
               {/* <!-- Default Table --> */}
               <table className="table">
@@ -48,20 +48,16 @@ function Factory() {
                     <th scope="col">Factory ID:</th>
                     <th scope="col">Factory Name:</th>
                     <th scope="col">Factory Location:</th>
-                    <th scope="col">Number Of Machines:</th>
-                    <th scope="col">Number Of Emplyees:</th>
-                    <th scope="col">Number Of Vehicles:</th>
-                    <th scope="col">Date Created</th>
+                    <th scope="col">View</th>
                   </tr>
                 </thead>
                 <tbody>
                     {factory && factory.map((factory) => (
                         <tr key={factory._id}>
-                            <th scope="row">{factory._id}</th>
-                            <td>{factory.fID}</td>
+                            <th scope="row">{factory.fId}</th>
                             <td>{factory.fName}</td>
-                            <td>28</td>
-                            <td><Link to ={{pathname:`/factory/${factory._id}`}}>View Factory Details</Link></td>
+                            <td>{factory.fLocation}</td>
+                            <td><Link to ={{pathname:`/factory-details/${factory._id}`}}>View Factory Details</Link></td>
                         </tr>
                     ))}
                 </tbody>

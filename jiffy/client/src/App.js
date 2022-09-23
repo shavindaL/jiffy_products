@@ -15,6 +15,8 @@ import DashboardHome from './pages/dashboard/DashboardHome'
 import CustomerAddPage from "./pages/dashboard/customerManagement/CustomerAddPage"
 import CustomerProfilePage from "./pages/dashboard/customerManagement/CustomerProfile";
 import FactoryAddPage from "./pages/dashboard/factory/FactoryAddPage";
+import FactoryPage from "./pages/dashboard/factory/FactoryPage";
+import FactoryDetailsPage from "./pages/dashboard/factory/FactoryDetails";
 import MachineAddPage from "./pages/dashboard/machine/MachineAddPage";
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
                 <Route path="/customer/:id" element={<CustomerProfilePage />}/>
                 <Route path="/add-customer" element={<CustomerAddPage />}/>
                 <Route path="/add-factory" element={<FactoryAddPage />}/>
+                <Route path="/view-factory" element={<FactoryPage />}/>
+                <Route path="/factory-details/:id" element={<FactoryDetailsPage />}/>
                 <Route path="/add-machine" element={<MachineAddPage />}/>
             </Routes>
         </BrowserRouter>

@@ -11,7 +11,7 @@ function FactoryDetailsPage() {
         <div>
             <Header />
             <Sidebar />
-            <FactoryProfile />
+            <FactoryDetails />
             <Footer />
             <a href="#" 
             className="back-to-top d-flex align-items-center justify-content-center">
