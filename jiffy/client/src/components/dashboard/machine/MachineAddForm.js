@@ -90,13 +90,13 @@ const MachineAddForm = () => {
                   </div>
 
                   <div className="col-12">
-                    <label for="inputMaxRunningHrs" className="form-label">Maximum Running Hours:</label>
+                    <label for="inputMaxRunningHrs" className="form-label">Maximum Running Hours per week:</label>
                     <input type="Number" className="form-control" id="inputMaxRunningHrs"
                       onChange={(e) => setMaxRunningHrs(e.target.value)} value={maxRunningHrs} />
                   </div>
                   
                   <div className="col-12">
-                    <label for="inputProducts" className="form-label">Products Created using the Machine:</label>
+                    <label for="inputProducts" className="form-label">Product Created using the Machine:</label>
                     <input type="text" className="form-control" id="inputProducts"
                       onChange={(e) => setProducts(e.target.value)} value={products} />
                   </div>

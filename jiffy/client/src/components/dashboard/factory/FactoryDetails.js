@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
 
 function FactoryDetails() {
   const [fId, setFId] = useState('')
@@ -12,16 +11,17 @@ function FactoryDetails() {
   const [createdDate, setCreatedDate] = useState('')
   const [error, setError] = useState(null)
 
-{/* const { fId } = useParams() */}
+  const { id } = useParams()   
+
   //var factory = null
   const [factory, setFactory] = useState(
     {
       fId: "",
       fName: "",
       fLocation: "",
-      NumOfMachines: "",
-      NumOfVehicles: "",
-      NumOfEmployees: "",
+      numOfMachines: "",
+      numOfVehicles: "",
+      numOfEmployees: "",
       createdDate: "",
       __v: 0,
       _id: ""
@@ -32,7 +32,7 @@ function FactoryDetails() {
       // fetch(`/api/factory/${id}`)
       // .then(res => res.json)
       // .then(data => setFactory(data))
-      const response = await fetch(`/api/factory/${fId}`)
+      const response = await fetch(`/api/factory/${id}`)
       const json = await response.json()
       //console.log(json["name"])
       if (response.ok) {
@@ -42,9 +42,10 @@ function FactoryDetails() {
             fId: `${json["fId"]}`,
             fName: `${json["fName"]}`,
             fLocation: `${json["fLocation"]}`,
-            NumOfMachines: `${json["NumOfMachines"]}`,
-            NumOfEmployees: `${json["NumOfEmployees"]}`,
-            NumOfVehicles: `${json["NumOfVehicles"]}`,
+            numOfMachines: `${json["numOfMachines"]}`,
+            numOfEmployees: `${json["numOfEmployees"]}`,
+            numOfVehicles: `${json["numOfVehicles"]}`,
+            createdDate: `${json["createdDate"]}`,
             __v: 0,
             _id: `${json["_id"]}`
           })
@@ -69,7 +70,7 @@ function FactoryDetails() {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:5000/api/factory/' + fId, {
+    const response = await fetch('http://localhost:5000/api/factory/' + id, {
       method: 'PATCH',
       body: JSON.stringify({
         fId: fId,
@@ -100,7 +101,7 @@ function FactoryDetails() {
   const handleDeleteSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:5000/api/factory/' + fId, {
+    const response = await fetch('http://localhost:5000/api/factory/' + id, {
       method: 'DELETE'
     })
     const json = await response.json()
@@ -175,7 +176,7 @@ function FactoryDetails() {
 
                       <div className="row">
                         <div className="col-lg-3 col-md-4 label">Number of Machines:</div>
-                        <div className="col-lg-9 col-md-8">{factory["numOfMachines"]}</div>
+                        <div className="col-lg-9 col-md-8">{factory["numOfEmployees"]}</div>
                       </div>
 
                       <div className="row">
