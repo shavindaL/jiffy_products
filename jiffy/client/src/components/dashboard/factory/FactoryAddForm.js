@@ -45,12 +45,12 @@ const FactoryAddForm = () => {
     <main id="main" className="main">
 
       <div className="pagetitle">
-        <h1>General Tables</h1>
+        <h1>Factory Management</h1>
         <nav>
           <ol className="breadcrumb">
             <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li className="breadcrumb-item">Tables</li>
-            <li className="breadcrumb-item active">General</li>
+            <li className="breadcrumb-item">Factory</li>
+            <li className="breadcrumb-item active">Add Factory</li>
           </ol>
         </nav>
       </div>

@@ -15,6 +15,74 @@ function Sidebar() {
       {/* <!-- End Dashboard Nav --> */}
 
       <li className="nav-item">
+        <a className="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i className="bi bi-journal-text"></i><span>Inventory Management</span><i className="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
+          
+          <li>
+            <a href="">
+              <i className="bi bi-circle"></i><span>---</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="">
+              <i className="bi bi-circle"></i><span>---</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="">
+              <i className="bi bi-circle"></i><span>---</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="">
+              <i className="bi bi-circle"></i><span>---</span>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+      {/* <!-- End Inventory Management Nav --> */}
+
+      <li className="nav-item">
+        <a className="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i className="bi bi-layout-text-window-reverse"></i><span>Factory Management</span><i className="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
+          
+          <li>
+            <a href="/view-factory">
+              <i className="bi bi-circle"></i><span>View Factories</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/add-factory">
+              <i className="bi bi-circle"></i><span>Insert Factory</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/view-machine">
+              <i className="bi bi-circle"></i><span>View Machines</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/add-machine">
+              <i className="bi bi-circle"></i><span>Insert Machine</span>
+            </a>
+          </li>
+          
+        </ul>
+      </li>
+      {/* <!-- End Factory Management Nav --> */}
+
+      <li className="nav-item">
         <a className="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i className="bi bi-menu-button-wide"></i><span>Components</span><i className="bi bi-chevron-down ms-auto"></i>
         </a>

@@ -4,7 +4,7 @@ const MachineAddForm = () => {
   const [mId, setMId] = useState('')
   const [mName, setMName] = useState('')
   const [maxRunningHrs, setMaxRunningHrs] = useState('')
-  const [products, setProducts] = useState('')
+  const [product, setProducts] = useState('')
   const [mFactory, setMFactory] = useState('')
   const [installedDate, setInstalledDate] = useState('')
   const [error, setError] = useState(null)
@@ -12,7 +12,7 @@ const MachineAddForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const machine = {mId, mName, maxRunningHrs, products, mFactory, installedDate}
+    const machine = {mId, mName, maxRunningHrs, product, mFactory, installedDate}
 
     const response = await fetch('/api/machine', {
       method: 'POST',
@@ -43,12 +43,12 @@ const MachineAddForm = () => {
     <main id="main" className="main">
 
       <div className="pagetitle">
-        <h1>Add Machines</h1>
+        <h1>Machine Management</h1>
         <nav>
           <ol className="breadcrumb">
             <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li className="breadcrumb-item">Tables</li>
-            <li className="breadcrumb-item active">General</li>
+            <li className="breadcrumb-item">Machine</li>
+            <li className="breadcrumb-item active">Add Machine</li>
           </ol>
         </nav>
       </div>
@@ -98,7 +98,7 @@ const MachineAddForm = () => {
                   <div className="col-12">
                     <label for="inputProducts" className="form-label">Product Created using the Machine:</label>
                     <input type="text" className="form-control" id="inputProducts"
-                      onChange={(e) => setProducts(e.target.value)} value={products} />
+                      onChange={(e) => setProducts(e.target.value)} value={product} />
                   </div>
 
                   <div className="col-12">

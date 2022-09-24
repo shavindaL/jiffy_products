@@ -6,7 +6,7 @@ const createMachine = async (req, res) => {
         mId: req.body.mId,
         mName: req.body.mName,
         maxRunningHrs: req.body.maxRunningHrs,
-        products: req.body.products,
+        product: req.body.product,
         mFactory: req.body.mFactory,
         installedDate: req.body.installedDate
     });
@@ -41,7 +41,7 @@ const updateMachine = async (req, res) => {
             mId: req.body.mId,
             mName: req.body.mName,
             maxRunningHrs: req.body.maxRunningHrs,
-            products: req.body.products,
+            product: req.body.product,
             mFactory: req.body.mFactory,
             installedDate: req.body.installedDate
         }, { new: true }

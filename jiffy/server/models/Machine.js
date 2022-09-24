@@ -13,7 +13,7 @@ const MachineSchema = new mongoose.Schema({
 		type: Number,
 		required: true
 	},
-  	products: {
+  	product: {
 		type: String,
 		required: false
 	},
@@ -23,7 +23,16 @@ const MachineSchema = new mongoose.Schema({
 	},
 	installedDate: {
 		type: Date,
-        required: false
+        required: false,
+		default: Date.now
+	},
+	totalProductions: {
+		type: Number,
+		required: false
+	},
+	totalRunningHrs: {
+		type: Number,
+		required: false
 	}
 })
 

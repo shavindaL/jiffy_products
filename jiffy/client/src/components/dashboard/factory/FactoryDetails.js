@@ -13,7 +13,6 @@ function FactoryDetails() {
 
   const { id } = useParams()   
 
-  //var factory = null
   const [factory, setFactory] = useState(
     {
       fId: "",
@@ -29,14 +28,11 @@ function FactoryDetails() {
 
   useEffect(() => {
     const fetchFactory = async () => {
-      // fetch(`/api/factory/${id}`)
-      // .then(res => res.json)
-      // .then(data => setFactory(data))
       const response = await fetch(`/api/factory/${id}`)
       const json = await response.json()
-      //console.log(json["name"])
+
       if (response.ok) {
-        //console.log("json "+json["name"])
+
         setFactory(
           {
             fId: `${json["fId"]}`,
@@ -112,7 +108,7 @@ function FactoryDetails() {
     }
 
     if (response.ok) {
-      console.log('User deleted successfully.', json)
+      console.log('Factory deleted successfully.', json)
     }
   }
 

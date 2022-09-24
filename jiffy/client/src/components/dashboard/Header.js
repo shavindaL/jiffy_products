@@ -20,7 +20,7 @@ function Header() {
     <div className="d-flex align-items-center justify-content-between">
       <a href="index.html" className="logo d-flex align-items-center">
         <img src={process.env.PUBLIC_URL+"/dashboard-assets/img/logo.png"} alt="" />
-        <span className="d-none d-lg-block">NiceAdmin</span>
+        <span className="d-none d-lg-block">Jiffy</span>
       </a>
       <i className="bi bi-list toggle-sidebar-btn" onClick={handleClick}></i>
     </div>
