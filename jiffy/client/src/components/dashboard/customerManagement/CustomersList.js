@@ -48,8 +48,8 @@ function Customers() {
                     <th scope="col">ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -58,7 +58,7 @@ function Customers() {
                             <th scope="row">{customer._id}</th>
                             <td>{customer.name}</td>
                             <td>{customer.email}</td>
-                            <td>28</td>
+                            <td>{customer.phone}</td>
                             <td><Link to ={{pathname:`/customer/${customer._id}`}}>View Profile</Link></td>
                         </tr>
                     ))}
