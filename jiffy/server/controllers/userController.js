@@ -1,9 +1,10 @@
 const User = require('../models/User')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
+const validator = require('validator')
 
 const createToken = (_id) => {
-    return jwt.sign({_id}, process.env.SECRET, {expiresIn: '2d'})
+    return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '2d' })
 }
 
 // get all users
@@ -33,6 +34,20 @@ const getUser = async (req, res) => {
 // create new user
 const createUser = async (req, res) => {
     const { name, email, address, phone, password } = req.body
+    var isPhoneValid = /^[0-9,.]*$/.test(phone);
+
+    if (!name || !email || !address || !phone || !password) {
+        return res.status(400).json({ error: 'All fields must be filled' })
+    }
+    if (!validator.isEmail(email)) {
+        return res.status(400).json({ error: 'Email is not valid' })
+    }
+    if (phone.length != 10 || !isPhoneValid) {
+        return res.status(400).json({ error: 'Phone number is not valid' })
+    }
+    if (!validator.isStrongPassword(password)) {
+        return res.status(400).json({ error: 'Password not strong enough. Must contains uppercase, lowercase, numbers and more than eight characters' })
+    }
 
     // add doc to db
     try {
@@ -64,6 +79,18 @@ const deleteUser = async (req, res) => {
 // update a user
 const updateUser = async (req, res) => {
     const { id } = req.params
+    const { name, email, address, phone} = req.body
+    var isPhoneValid = /^[0-9,.]*$/.test(phone);
+
+    if (!name || !email || !address || !phone) {
+        return res.status(400).json({ error: 'All fields must be filled' })
+    }
+    if (!validator.isEmail(req.body.email)) {
+        return res.status(400).json({ error: 'Email is not valid' })
+    }
+    if (phone.length != 10 || !isPhoneValid) {
+        return res.status(400).json({ error: 'Phone number is not valid' })
+    }
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: 'User does not exsist' })
@@ -85,33 +112,34 @@ const updateUser = async (req, res) => {
 
 // login
 const loginUser = async (req, res) => {
-    const {email, password} =  req.body
+    const { email, password } = req.body
 
     try {
         const user = await User.login(email, password)
 
         // create a token
         const token = createToken(user._id)
-        
-        res.status(200).json({email, token})
-    }catch (error){
-        res.status(400).json({error: error.message})
+        const id = user._id
+
+        res.status(200).json({ id, email, token })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
     }
 }
 
 // signup user
 const signupUser = async (req, res) => {
-    const {name, email, password} = req.body
+    const { name, email, password } = req.body
 
     try {
         const user = await User.signup(name, email, password)
 
         // create a token
         const token = createToken(user._id)
-        
-        res.status(200).json({email, token})
-    }catch (error){
-        res.status(400).json({error: error.message})
+
+        res.status(200).json({ email, token })
+    } catch (error) {
+        res.status(400).json({ error: error.message })
     }
 }
 

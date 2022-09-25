@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
 
 function CustomerProfile() {
   const [name, setName] = useState('')
@@ -22,6 +21,7 @@ function CustomerProfile() {
       __v: 0,
       _id: ""
     })
+
   useEffect(() => {
     const fetchCustomer = async () => {
       // fetch(`/api/users/${id}`)
@@ -190,7 +190,7 @@ function CustomerProfile() {
                       {error &&
                         <div className="alert alert-danger alert-dismissible fade show" role="alert">
                           {error}
-                          <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          <button type="button" className="btn" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                       }
 

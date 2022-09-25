@@ -65,12 +65,9 @@ const CustomerAddForm = () => {
                 {error &&
                   <div className="alert alert-danger alert-dismissible fade show" role="alert">
                     {error}
-                    <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button type="button" className="btn" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
                 }
-
-
-
 
                 {/* <!-- Vertical Form --> */}
                 <form className="row g-3" onSubmit={handleSubmit}>
@@ -100,8 +97,7 @@ const CustomerAddForm = () => {
                       onChange={(e) => setPassword(e.target.value)} value={password} />
                   </div>
                   <div className="text-center">
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                    <button type="reset" className="btn btn-secondary">Reset</button>
+                    <button type="submit" className="btn btn-primary">Add Customer</button>
                   </div>
                 </form>
                 {/* <!-- Vertical Form --> */}
