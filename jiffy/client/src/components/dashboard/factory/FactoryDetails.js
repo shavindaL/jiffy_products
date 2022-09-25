@@ -39,8 +39,8 @@ function FactoryDetails() {
             fName: `${json["fName"]}`,
             fLocation: `${json["fLocation"]}`,
             numOfMachines: `${json["numOfMachines"]}`,
-            numOfEmployees: `${json["numOfEmployees"]}`,
             numOfVehicles: `${json["numOfVehicles"]}`,
+            numOfEmployees: `${json["numOfEmployees"]}`,
             createdDate: `${json["createdDate"]}`,
             __v: 0,
             _id: `${json["_id"]}`
@@ -49,7 +49,7 @@ function FactoryDetails() {
           setFName(json["fName"])
           setFLocation(json["fLocation"])
           setNumOfMachines (json["numOfMachines"])
-          setNumOfMachines(json["numOfVehicles"])
+          setNumOfVehicles(json["numOfVehicles"])
           setNumOfEmployees(json["numOfEmployees"])
           setCreatedDate(json["createdDate"])
       } else{
@@ -141,17 +141,17 @@ function FactoryDetails() {
                     </li>
 
                     <li className="nav-item">
-                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#factory-edit">Update</button>
+                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#factory-update">Update</button>
                     </li>
 
                     <li className="nav-item">
-                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#factory-settings">Delete</button>
+                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#factory-delete">Delete</button>
                     </li>
 
                   </ul>
                   <div className="tab-content pt-2">
 
-                    <div className="tab-pane fade show active profile-overview" id="profile-overview">
+                    <div className="tab-pane fade show active profile-overview" id="factory-overview">
 
                       <h5 className="card-title">Factory Details</h5>
 
@@ -172,7 +172,7 @@ function FactoryDetails() {
 
                       <div className="row">
                         <div className="col-lg-3 col-md-4 label">Number of Machines:</div>
-                        <div className="col-lg-9 col-md-8">{factory["numOfEmployees"]}</div>
+                        <div className="col-lg-9 col-md-8">{factory["numOfMachines"]}</div>
                       </div>
 
                       <div className="row">
@@ -192,7 +192,7 @@ function FactoryDetails() {
 
                     </div>
 
-                    <div className="tab-pane fade profile-edit pt-3" id="profile-edit">
+                    <div className="tab-pane fade profile-edit pt-3" id="factory-update">
 
                       {/*Factory Update Form*/}
                       <form onSubmit={handleUpdateSubmit}>
@@ -267,7 +267,7 @@ function FactoryDetails() {
 
                     </div>
 
-                    <div className="tab-pane fade pt-3" id="profile-settings">
+                    <div className="tab-pane fade pt-3" id="factory-delete">
 
                     {/* Delete */}
                     <form onSubmit={handleDeleteSubmit}>

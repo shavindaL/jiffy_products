@@ -1,33 +1,33 @@
 import {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 
-function Machine() {
-    const [machine, setMachine] = useState(null)
+function Factory() {
+    const [factory, setFactory] = useState(null)
 
     useEffect(() => {
-        const fetchMachine = async () => {
-            const response = await fetch(`/api/machine`)
+        const fetchFactory = async () => {
+            const response = await fetch(`/api/factory`)
             const json = await response.json()
             console.log(json)
             console.log(json[0])
             if (response.ok) {
-                setMachine(json)
+                setFactory(json)
             }
         }
 
-        fetchMachine()
+        fetchFactory()
     }, [])
 
     return (
         <main id="main" className="main">
 
     <div className="pagetitle">
-      <h1>Machine Management</h1>
+      <h1>General Tables</h1>
       <nav>
         <ol className="breadcrumb">
           <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li className="breadcrumb-item">Machine</li>
-          <li className="breadcrumb-item active">View Machine</li>
+          <li className="breadcrumb-item">Tables</li>
+          <li className="breadcrumb-item active">General</li>
         </ol>
       </nav>
     </div>
@@ -39,17 +39,22 @@ function Machine() {
 
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title">All Machines</h5>
+              <h5 className="card-title">All Factories</h5>
 
               <div class="row mb-3">
                   <label class="col-sm-2 col-form-label" >Select a factory:</label>
                   <br />
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example">
-                      <option selected="">All factories</option>
-                      <option value="1">FAC100</option>
-                      <option value="2">FAC200</option>
-                      <option value="3">FAC300</option>
+                      <option selected="">Open this select menu</option>
+
+                      {factory && factory.map((factory) => (
+                        <tr key={factory._id}>
+                      <option value="1">{factory.id}</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                      </tr>
+                    ))}
                     </select>
                   </div>
                 </div>
@@ -58,19 +63,19 @@ function Machine() {
               <table className="table">
                 <thead>
                   <tr>
-                    <th scope="col">Machine ID</th>
-                    <th scope="col">Product Created</th>
-                    <th scope="col">Max. Running Hours per week</th>
+                    <th scope="col">Factory ID</th>
+                    <th scope="col">Factory Name</th>
+                    <th scope="col">Factory Location</th>
                     <th scope="col">View</th>
                   </tr>
                 </thead>
                 <tbody>
-                    {machine && machine.map((machine) => (
-                        <tr key={machine._id}>
-                            <th scope="row">{machine.mId}</th>
-                            <td>{machine.product}</td>
-                            <td>{machine.maxRunningHrs}</td>
-                            <td><Link to ={{pathname:`/machine-details/${machine._id}`}}>View Machine Details</Link></td>
+                    {factory && factory.map((factory) => (
+                        <tr key={factory._id}>
+                            <th scope="row">{factory.fId}</th>
+                            <td>{factory.fName}</td>
+                            <td>{factory.fLocation}</td>
+                            <td><Link to ={{pathname:`/factory-details/${factory._id}`}}>View Factory Details</Link></td>
                         </tr>
                     ))}
                 </tbody>
@@ -86,4 +91,4 @@ function Machine() {
     );
 }
 
-export default Machine;
+export default Factory;

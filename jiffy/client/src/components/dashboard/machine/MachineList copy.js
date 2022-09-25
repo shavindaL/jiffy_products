@@ -46,10 +46,10 @@ function Machine() {
                   <br />
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example">
-                      <option selected="">All factories</option>
-                      <option value="1">FAC100</option>
-                      <option value="2">FAC200</option>
-                      <option value="3">FAC300</option>
+                      <option selected="">Open this select menu</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
                     </select>
                   </div>
                 </div>
@@ -59,8 +59,8 @@ function Machine() {
                 <thead>
                   <tr>
                     <th scope="col">Machine ID</th>
+                    <th scope="col">Machine Name</th>
                     <th scope="col">Product Created</th>
-                    <th scope="col">Max. Running Hours per week</th>
                     <th scope="col">View</th>
                   </tr>
                 </thead>
@@ -68,8 +68,8 @@ function Machine() {
                     {machine && machine.map((machine) => (
                         <tr key={machine._id}>
                             <th scope="row">{machine.mId}</th>
+                            <td>{machine.mName}</td>
                             <td>{machine.product}</td>
-                            <td>{machine.maxRunningHrs}</td>
                             <td><Link to ={{pathname:`/machine-details/${machine._id}`}}>View Machine Details</Link></td>
                         </tr>
                     ))}

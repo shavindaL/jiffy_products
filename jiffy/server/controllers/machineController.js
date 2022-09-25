@@ -8,7 +8,9 @@ const createMachine = async (req, res) => {
         maxRunningHrs: req.body.maxRunningHrs,
         product: req.body.product,
         mFactory: req.body.mFactory,
-        installedDate: req.body.installedDate
+        installedDate: req.body.installedDate,
+        totalProductions: req.body.totalProductions,
+        totalRunningHrs: req.body.totalRunningHrs
     });
 
     await machine.save();
@@ -43,7 +45,9 @@ const updateMachine = async (req, res) => {
             maxRunningHrs: req.body.maxRunningHrs,
             product: req.body.product,
             mFactory: req.body.mFactory,
-            installedDate: req.body.installedDate
+            installedDate: req.body.installedDate,
+            totalProductions: req.body.totalProductions,
+            totalRunningHrs: req.body.totalRunningHrs
         }, { new: true }
     );
     res.send(machine);

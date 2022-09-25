@@ -142,17 +142,17 @@ function MachineDetails() {
                     </li>
 
                     <li className="nav-item">
-                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#machine-edit">Update</button>
+                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#machine-update">Update</button>
                     </li>
 
                     <li className="nav-item">
-                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#machine-settings">Delete</button>
+                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#machine-delete">Delete</button>
                     </li>
 
                   </ul>
                   <div className="tab-content pt-2">
 
-                    <div className="tab-pane fade show active profile-overview" id="profile-overview">
+                    <div className="tab-pane fade show active profile-overview" id="machine-overview">
 
                       <h5 className="card-title">Machine Details</h5>
 
@@ -193,7 +193,7 @@ function MachineDetails() {
 
                     </div>
 
-                    <div className="tab-pane fade profile-edit pt-3" id="profile-edit">
+                    <div className="tab-pane fade profile-edit pt-3" id="machine-update">
 
                       {/*Machine Update Form*/}
                       <form onSubmit={handleUpdateSubmit}>
@@ -244,6 +244,17 @@ function MachineDetails() {
                         </div>
                       </div>
 
+                      {/*<div className="row">
+                        <div className="col-lg-3 col-md-4 label">Total Productions:</div>
+                        <div className="col-lg-9 col-md-8">{machine["totalProductions"]}</div>
+                      </div>
+
+                      <div className="row">
+                        <div className="col-lg-3 col-md-4 label">Total Running Hours:</div>
+                        <div className="col-lg-9 col-md-8">{machine["totalRunningHrs"]}</div>
+                      </div>*/}
+
+
                       <div className="row mb-3">
                         <label for="totalProductions" className="col-md-4 col-lg-3 col-form-label">Total Productions:</label>
                         <div className="col-md-8 col-lg-9">
@@ -268,7 +279,7 @@ function MachineDetails() {
 
                     </div>
 
-                    <div className="tab-pane fade pt-3" id="profile-settings">
+                    <div className="tab-pane fade pt-3" id="machine-delete">
 
                     {/* Delete */}
                     <form onSubmit={handleDeleteSubmit}>
