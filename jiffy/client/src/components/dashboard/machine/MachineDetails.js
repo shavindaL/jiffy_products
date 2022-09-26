@@ -120,10 +120,10 @@ function MachineDetails() {
     <main id="main" className="main">
 
       <div className="pagetitle">
-        <h1>Profile</h1>
+        <h1>Machines</h1>
         <nav>
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li className="breadcrumb-item"><a href="/dashboard">Home</a></li>
             <li className="breadcrumb-item">Machine</li>
             <li className="breadcrumb-item active">Details</li>
           </ol>
@@ -141,7 +141,7 @@ function MachineDetails() {
                 <ul className="nav nav-tabs nav-tabs-bordered">
 
                   <li className="nav-item">
-                    <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#machine-overview">Overview</button>
+                    <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#machine-overview">Details</button>
                   </li>
 
                   <li className="nav-item">

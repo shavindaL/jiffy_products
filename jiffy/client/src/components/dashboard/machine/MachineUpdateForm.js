@@ -53,7 +53,7 @@ const MachineUpdateForm = () => {
           <ol className="breadcrumb">
             <li className="breadcrumb-item"><a href="index.html">Home</a></li>
             <li className="breadcrumb-item">Machine</li>
-            <li className="breadcrumb-item active">Add Machine</li>
+            <li className="breadcrumb-item active">Update Machine Status</li>
           </ol>
         </nav>
       </div>
@@ -66,7 +66,7 @@ const MachineUpdateForm = () => {
 
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title">Machine Add Form</h5>
+                <h5 className="card-title">Data insert Form</h5>
 
 
                 {error &&
@@ -113,6 +113,12 @@ const MachineUpdateForm = () => {
                   </div>
 
                   <div className="col-12">
+                    <label for="inputInstalledDate" className="form-label">Date:</label>
+                    <input type="Date" className="form-control" id="inputInstalledDate"
+                      onChange={(e) => setInstalledDate(e.target.value)} value={installedDate} />
+                  </div>
+
+                  <div className="col-12">
                     <label for="product" className="form-label">Product:</label>
                     <input type="text" className="form-control" id="product"
                       onChange={(e) => setProducts(e.target.value)} value={product} />
@@ -125,13 +131,15 @@ const MachineUpdateForm = () => {
                   </div>
 
                   <div className="col-12">
-                    <label for="product" className="form-label">Number of Products Completed</label>
+                    <label for="product" className="form-label">Number of Products Completed:</label>
                     <input type="text" className="form-control" id="product"
                       onChange={(e) => setProducts(e.target.value)} value={product} />
                   </div>
 
+                  
+
                   <div className="text-center">
-                    <button type="reset" className="btn btn-secondary">Reset</button>
+                    <button type="reset" className="btn btn-secondary" style={{ margin: "20px" }}>Reset</button>
                     <button type="submit" className="btn btn-primary">Submit</button>
                   </div>
                 </form>

@@ -12,8 +12,6 @@ const FactoryAddForm = () => {
   const [createdDate, setCreatedDate] = useState('')
   const [error, setError] = useState(null)
 
-  //const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -55,7 +53,7 @@ const FactoryAddForm = () => {
         <h1>Factory Management</h1>
         <nav>
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li className="breadcrumb-item"><a href="/dashboard">Home</a></li>
             <li className="breadcrumb-item">Factory</li>
             <li className="breadcrumb-item active">Add Factory</li>
           </ol>
@@ -70,7 +68,7 @@ const FactoryAddForm = () => {
 
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title">Factory Form</h5>
+                <h5 className="card-title">Factory Insert Form</h5>
 
 
                 {error &&
@@ -129,7 +127,7 @@ const FactoryAddForm = () => {
                   </div>
 
                   <div className="text-center">
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary" style={{ margin: "20px" }}>Submit</button>
                     <button type="reset" className="btn btn-secondary">Reset</button>
                   </div>
                 </form>

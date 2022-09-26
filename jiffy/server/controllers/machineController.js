@@ -92,8 +92,8 @@ const updateMachine = async (req, res) => {
         return res.status(400).json({ error: 'All fields must be filled.' })
     }
     
-    if (mId.length < 6) {
-        return res.status(400).json({ error: 'Machine ID must include atleast 6 characters. Eg: XXX000' })
+    if (mId.length < 5) {
+        return res.status(400).json({ error: 'Machine ID must include atleast 5 characters. Eg: XXX00' })
     }
     
     if (maxRunningHrs < 50) {

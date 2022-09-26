@@ -66,7 +66,7 @@ const MachineAddForm = () => {
 
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title">Machine Add Form</h5>
+                <h5 className="card-title">Machine Insert Form</h5>
 
 
                 {error &&

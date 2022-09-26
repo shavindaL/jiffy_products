@@ -123,9 +123,9 @@ function FactoryDetails() {
         <h1>Profile</h1>
         <nav>
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li className="breadcrumb-item"><a href="/dashboard">Home</a></li>
             <li className="breadcrumb-item">Factory</li>
-            <li className="breadcrumb-item active">Details</li>
+            <li className="breadcrumb-item active"><a href="/view-factory">Details</a></li>
           </ol>
         </nav>
       </div>
