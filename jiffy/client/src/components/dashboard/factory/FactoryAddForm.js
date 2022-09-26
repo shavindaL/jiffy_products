@@ -1,7 +1,8 @@
 import { useState } from "react";
-//import {Link, Routes, Route, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const FactoryAddForm = () => {
+  const navigate = useNavigate();
   const [fId, setFId] = useState('')
   const [fName, setFName] = useState('')
   const [fLocation, setFLocation] = useState('')
@@ -41,6 +42,7 @@ const FactoryAddForm = () => {
       setCreatedDate('')
       setError(null)
       console.log('New Factory was added succefully.', json)
+      navigate("/view-machine");
     }
   }
 

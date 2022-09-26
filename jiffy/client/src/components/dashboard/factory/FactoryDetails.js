@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function FactoryDetails() {
+  const navigate = useNavigate();
   const [fId, setFId] = useState('')
   const [fName, setFName] = useState('')
   const [fLocation, setFLocation] = useState('')
@@ -109,7 +111,9 @@ function FactoryDetails() {
 
     if (response.ok) {
       console.log('Factory deleted successfully.', json)
+      navigate("/view-factory");
     }
+
   }
 
   return (
@@ -273,7 +277,7 @@ function FactoryDetails() {
                     <form onSubmit={handleDeleteSubmit}>
 
                         <div className="row mb-3">
-                          <label for="fullName" className="col-md-4 col-lg-3 col-form-label">Delete this Factory</label>
+                        <label for="fullName" className="col-md-4 col-lg-5 col-form-label">Are you sure you want to delete this factory?</label>
                           <div className="col-md-8 col-lg-9">
                           <button type="submit" className="btn btn-primary">Delete Permanently</button>
                           </div>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function MachineDetails() {
+  const navigate = useNavigate();
   const [mId, setMId] = useState('')
   const [maxRunningHrs, setMaxRunningHrs] = useState('')
   const [product, setProduct] = useState('')
@@ -110,6 +112,7 @@ function MachineDetails() {
 
     if (response.ok) {
       console.log('Machine deleted successfully.', json)
+      navigate("/view-machine");
     }
   }
 
@@ -303,7 +306,7 @@ function MachineDetails() {
                     <form onSubmit={handleDeleteSubmit}>
 
                       <div className="row mb-3">
-                        <label for="fullName" className="col-md-4 col-lg-3 col-form-label">Delete this Machine</label>
+                        <label for="fullName" className="col-md-4 col-lg-5 col-form-label">Are you sure you want to delete this machine?</label>
                         <div className="col-md-8 col-lg-9">
                           <button type="submit" className="btn btn-primary">Delete Permanently</button>
                         </div>
