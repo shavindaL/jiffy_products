@@ -129,7 +129,7 @@ function FactoryDetails() {
       
         <section className="section profile">
           <div className="row">
-            <div className="col-xl-8">
+            <div className="col-xl-10">
 
               <div className="card">
                 <div className="card-body pt-3">

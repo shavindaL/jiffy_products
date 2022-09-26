@@ -4,15 +4,20 @@ const MachineAddForm = () => {
   const [mId, setMId] = useState('')
   const [mName, setMName] = useState('')
   const [maxRunningHrs, setMaxRunningHrs] = useState('')
-  const [product, setProducts] = useState('')
+  const [product, setProducts] = useState('Pots')
   const [mFactory, setMFactory] = useState('')
   const [installedDate, setInstalledDate] = useState('')
   const [error, setError] = useState(null)
 
+  // const handleSelect=(e)=>{
+  //   console.log(e);
+  //   setProducts(e)
+  // }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const machine = {mId, mName, maxRunningHrs, product, mFactory, installedDate}
+    const machine = { mId, mName, maxRunningHrs, product, mFactory, installedDate }
 
     const response = await fetch('/api/machine', {
       method: 'POST',
@@ -76,30 +81,59 @@ const MachineAddForm = () => {
 
                 {/* <!-- Vertical Form --> */}
                 <form className="row g-3" onSubmit={handleSubmit}>
-                  
+
                   <div className="col-12">
                     <label for="inputMID" className="form-label">Machine ID:</label>
                     <input type="text" className="form-control" id="inputMID"
                       onChange={(e) => setMId(e.target.value)} value={mId} />
                   </div>
 
-                  <div className="col-12">
+                  {/* <div className="col-12">
                     <label for="inputMName" className="form-label">Machine Name:</label>
                     <input type="text" className="form-control" id="inputMName"
                       onChange={(e) => setMName(e.target.value)} value={mName} />
-                  </div>
+                  </div> */}
 
                   <div className="col-12">
                     <label for="inputMaxRunningHrs" className="form-label">Maximum Running Hours per week:</label>
                     <input type="Number" className="form-control" id="inputMaxRunningHrs"
                       onChange={(e) => setMaxRunningHrs(e.target.value)} value={maxRunningHrs} />
                   </div>
-                  
-                  <div className="col-12">
+
+                  {/* <div className="col-12">
+
                     <label for="inputProducts" className="form-label">Product Created using the Machine:</label>
-                    <input type="text" className="form-control" id="inputProducts"
+
+                      <input type="text" className="form-control" id="inputProducts"
                       onChange={(e) => setProducts(e.target.value)} value={product} />
+
+                  </div> */}
+
+
+                  <div className="col-12">
+                    <div className="input-group mb-3">
+
+                      <label class="col-12 col-form-label" >Product Created using the Machine:</label>
+                      <br/>
+
+                      <select className="form-select" onChange={e => setProducts(e.target.value)}>
+                        <option value="Pots" selected>Pots</option>
+                        <option value="Growbags">Growbags</option>
+                        <option value="Growblocks" selected>Growblocks</option>
+                        <option value="Pallets">Pallets</option>
+                        <option value="Performa" selected>Performa</option>
+                        <option value="Substrates">Substrates</option>
+
+                      </select>
+
+                    </div>
                   </div>
+
+
+
+
+
+
 
                   <div className="col-12">
                     <label for="inputMFactory" className="form-label">Factory ID which this Machine belongs:</label>
@@ -114,7 +148,7 @@ const MachineAddForm = () => {
                   </div>
 
                   <div className="text-center">
-                    <button type="reset" className="btn btn-secondary">Reset</button>
+                    <button type="reset" className="btn btn-secondary" style={{ margin: "20px" }}>Reset</button>
                     <button type="submit" className="btn btn-primary">Submit</button>
                   </div>
                 </form>
@@ -123,7 +157,7 @@ const MachineAddForm = () => {
               </div>
             </div>
 
-            
+
           </div>
           <div className="col-lg-4">
           </div>

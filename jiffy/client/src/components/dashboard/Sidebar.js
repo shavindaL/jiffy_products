@@ -35,7 +35,7 @@ function Sidebar() {
 
         <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#" aria-expanded="false">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Facotory Management</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-layout-text-window-reverse"></i><span>Factory Management</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           
@@ -60,6 +60,12 @@ function Sidebar() {
           <li>
             <a href="/add-machine">
               <i class="bi bi-circle"></i><span>Insert Machine</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/update-machine">
+              <i class="bi bi-circle"></i><span>Update Machine Status</span>
             </a>
           </li>
 

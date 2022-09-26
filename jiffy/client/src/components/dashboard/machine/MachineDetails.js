@@ -11,7 +11,7 @@ function MachineDetails() {
   const [totalRunningHrs, setTotalRunningHrs] = useState('')
   const [error, setError] = useState(null)
 
-  const { id } = useParams()   
+  const { id } = useParams()
 
   //var machine = null
   const [machine, setMachine] = useState(
@@ -31,9 +31,9 @@ function MachineDetails() {
     const fetchMachine = async () => {
       const response = await fetch(`/api/machine/${id}`)
       const json = await response.json()
-  
+
       if (response.ok) {
-        
+
         setMachine(
           {
             mId: `${json["mId"]}`,
@@ -46,24 +46,24 @@ function MachineDetails() {
             __v: 0,
             _id: `${json["_id"]}`
           })
-          setMId(json["mId"])
-          setMaxRunningHrs(json["maxRunningHrs"])
-          setProduct(json["product"])
-          setMFactory (json["mFactory"])
-          setInstalledDate(json["installedDate"])
-          setTotalProductions(json["totalProductions"])
-          setTotalRunningHrs(json["totalRunningHrs"])
-      } else{
+        setMId(json["mId"])
+        setMaxRunningHrs(json["maxRunningHrs"])
+        setProduct(json["product"])
+        setMFactory(json["mFactory"])
+        setInstalledDate(json["installedDate"])
+        setTotalProductions(json["totalProductions"])
+        setTotalRunningHrs(json["totalRunningHrs"])
+      } else {
         console.log("failed")
       }
-       
+
     }
 
     fetchMachine()
-    
+
   }, [setMachine])
 
-  
+
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
 
@@ -127,88 +127,88 @@ function MachineDetails() {
         </nav>
       </div>
       {/* <!-- End Page Title --> */}
-      
-        <section className="section profile">
-          <div className="row">
-            <div className="col-xl-8">
 
-              <div className="card">
-                <div className="card-body pt-3">
-                  {/* <!-- Bordered Tabs --> */}
-                  <ul className="nav nav-tabs nav-tabs-bordered">
+      <section className="section profile">
+        <div className="row">
+          <div className="col-xl-10">
 
-                    <li className="nav-item">
-                      <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#machine-overview">Overview</button>
-                    </li>
+            <div className="card">
+              <div className="card-body pt-3">
+                {/* <!-- Bordered Tabs --> */}
+                <ul className="nav nav-tabs nav-tabs-bordered">
 
-                    <li className="nav-item">
-                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#machine-update">Update</button>
-                    </li>
+                  <li className="nav-item">
+                    <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#machine-overview">Overview</button>
+                  </li>
 
-                    <li className="nav-item">
-                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#machine-delete">Delete</button>
-                    </li>
+                  <li className="nav-item">
+                    <button className="nav-link" data-bs-toggle="tab" data-bs-target="#machine-update">Update</button>
+                  </li>
 
-                  </ul>
-                  <div className="tab-content pt-2">
+                  <li className="nav-item">
+                    <button className="nav-link" data-bs-toggle="tab" data-bs-target="#machine-delete">Delete</button>
+                  </li>
 
-                    <div className="tab-pane fade show active profile-overview" id="machine-overview">
+                </ul>
+                <div className="tab-content pt-2">
 
-                      <h5 className="card-title">Machine Details</h5>
+                  <div className="tab-pane fade show active profile-overview" id="machine-overview">
 
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label ">Machine ID:</div>
-                        <div className="col-lg-9 col-md-8">{machine["mId"]}</div>
-                      </div>
+                    <h5 className="card-title">Machine Details</h5>
 
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label ">Maximum Running Hours per week:</div>
-                        <div className="col-lg-9 col-md-8">{machine["maxRunningHrs"]}</div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label">Product created:</div>
-                        <div className="col-lg-9 col-md-8">{machine["product"]}</div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label">Factory ID this machine belongs:</div>
-                        <div className="col-lg-9 col-md-8">{machine["mFactory"]}</div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label">Machine installed Date:</div>
-                        <div className="col-lg-9 col-md-8">{machine["installedDate"]}</div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label">Total Productions:</div>
-                        <div className="col-lg-9 col-md-8">{machine["totalProductions"]}</div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label">Total Running Hours:</div>
-                        <div className="col-lg-9 col-md-8">{machine["totalRunningHrs"]}</div>
-                      </div>
-
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label ">Machine ID:</div>
+                      <div className="col-lg-9 col-md-8">{machine["mId"]}</div>
                     </div>
 
-                    <div className="tab-pane fade profile-edit pt-3" id="machine-update">
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label ">Maximum Running Hours per week:</div>
+                      <div className="col-lg-9 col-md-8">{machine["maxRunningHrs"]}</div>
+                    </div>
 
-                      {/*Machine Update Form*/}
-                      <form onSubmit={handleUpdateSubmit}>
-                        {error &&
-                          <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                            {error}
-                            <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                          </div>
-                        }
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label">Product created:</div>
+                      <div className="col-lg-9 col-md-8">{machine["product"]}</div>
+                    </div>
 
-                        <div className="row mb-3">
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label">Factory ID this machine belongs:</div>
+                      <div className="col-lg-9 col-md-8">{machine["mFactory"]}</div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label">Machine installed Date:</div>
+                      <div className="col-lg-9 col-md-8">{machine["installedDate"]}</div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label">Total Productions:</div>
+                      <div className="col-lg-9 col-md-8">{machine["totalProductions"]}</div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label">Total Running Hours:</div>
+                      <div className="col-lg-9 col-md-8">{machine["totalRunningHrs"]}</div>
+                    </div>
+
+                  </div>
+
+                  <div className="tab-pane fade profile-edit pt-3" id="machine-update">
+
+                    {/*Machine Update Form*/}
+                    <form onSubmit={handleUpdateSubmit}>
+                      {error &&
+                        <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                          {error}
+                          <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                      }
+
+                      <div className="row mb-3">
                         <label for="fId" className="col-md-4 col-lg-3 col-form-label">Machine ID:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="fId" type="text" className="form-control" id="fId"
-                          onChange={(e) => setMId(e.target.value)} value={mId} />
+                            onChange={(e) => setMId(e.target.value)} value={mId} />
                         </div>
                       </div>
 
@@ -216,7 +216,7 @@ function MachineDetails() {
                         <label for="maxRunningHrs" className="col-md-4 col-lg-3 col-form-label">Maximum Running Hours per week:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="maxRunningHrs" type="text" className="form-control" id="maxRunningHrs"
-                          onChange={(e) => setMaxRunningHrs(e.target.value)} value={maxRunningHrs} />
+                            onChange={(e) => setMaxRunningHrs(e.target.value)} value={maxRunningHrs} />
                         </div>
                       </div>
 
@@ -224,15 +224,33 @@ function MachineDetails() {
                         <label for="product" className="col-md-4 col-lg-3 col-form-label">Product created:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="product" type="text" className="form-control" id="product"
-                          onChange={(e) => setProduct(e.target.value)} value={product} />
+                            onChange={(e) => setProduct(e.target.value)} value={product} />
                         </div>
                       </div>
 
-                      <div className="row mb-3">
+                      {/* <div className="row mb-3">
                         <label for="mFactory" className="col-md-4 col-lg-3 col-form-label">Factory ID this machine belongs:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="mFactory" type="text" className="form-control" id="mFactory"
                           onChange={(e) => setMFactory(e.target.value)} value={mFactory} />
+                        </div>
+                      </div> */}
+
+                      <div className="col-12">
+                        <div className="input-group mb-3">
+
+                          <label class="col-md-4 col-lg-3 col-form-label" >Product Created using the Machine:</label>
+
+                          <select className="form-select" onChange={e => setProduct(e.target.value)}>
+                            <option value="Pots" selected>Pots</option>
+                            <option value="Growbags">Growbags</option>
+                            <option value="Growblocks" selected>Growblocks</option>
+                            <option value="Pallets">Pallets</option>
+                            <option value="Performa" selected>Performa</option>
+                            <option value="Substrates">Substrates</option>
+
+                          </select>
+
                         </div>
                       </div>
 
@@ -240,7 +258,7 @@ function MachineDetails() {
                         <label for="installedDate" className="col-md-4 col-lg-3 col-form-label">Machine installed Date:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="installedDate" type="text" className="form-control" id="installedDate"
-                          onChange={(e) => setInstalledDate(e.target.value)} value={installedDate} />
+                            onChange={(e) => setInstalledDate(e.target.value)} value={installedDate} />
                         </div>
                       </div>
 
@@ -259,7 +277,7 @@ function MachineDetails() {
                         <label for="totalProductions" className="col-md-4 col-lg-3 col-form-label">Total Productions:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="totalProductions" type="text" className="form-control" id="totalProductions"
-                          onChange={(e) => setTotalProductions(e.target.value)} value={totalProductions} />
+                            onChange={(e) => setTotalProductions(e.target.value)} value={totalProductions} />
                         </div>
                       </div>
 
@@ -267,45 +285,45 @@ function MachineDetails() {
                         <label for="totalRunningHrs" className="col-md-4 col-lg-3 col-form-label">Total Running Hours:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="totalRunningHrs" type="text" className="form-control" id="totalRunningHrs"
-                          onChange={(e) => setTotalRunningHrs(e.target.value)} value={totalRunningHrs} />
+                            onChange={(e) => setTotalRunningHrs(e.target.value)} value={totalRunningHrs} />
                         </div>
                       </div>
-                                              
-                        <div className="text-center">
-                          <button type="submit" className="btn btn-primary">Save Changes</button>
-                        </div>
-                      </form>
-                      {/* End Profile Edit Form */}
 
-                    </div>
+                      <div className="text-center">
+                        <button type="submit" className="btn btn-primary">Save Changes</button>
+                      </div>
+                    </form>
+                    {/* End Profile Edit Form */}
 
-                    <div className="tab-pane fade pt-3" id="machine-delete">
+                  </div>
+
+                  <div className="tab-pane fade pt-3" id="machine-delete">
 
                     {/* Delete */}
                     <form onSubmit={handleDeleteSubmit}>
 
-                        <div className="row mb-3">
-                          <label for="fullName" className="col-md-4 col-lg-3 col-form-label">Delete this Machine</label>
-                          <div className="col-md-8 col-lg-9">
+                      <div className="row mb-3">
+                        <label for="fullName" className="col-md-4 col-lg-3 col-form-label">Delete this Machine</label>
+                        <div className="col-md-8 col-lg-9">
                           <button type="submit" className="btn btn-primary">Delete Permanently</button>
-                          </div>
                         </div>
-                      </form>
+                      </div>
+                    </form>
                     {/* <!-- End Delete --> */}
 
                   </div>
 
-                  </div>
-                  {/* <!-- End Bordered Tabs --> */}
-
                 </div>
-              </div>
+                {/* <!-- End Bordered Tabs --> */}
 
+              </div>
             </div>
 
           </div>
-        </section>
-      
+
+        </div>
+      </section>
+
 
 
     </main>

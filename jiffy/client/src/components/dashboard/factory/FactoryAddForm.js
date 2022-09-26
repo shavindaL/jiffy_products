@@ -1,4 +1,5 @@
 import { useState } from "react";
+//import {Link, Routes, Route, useNavigate} from 'react-router-dom';
 
 const FactoryAddForm = () => {
   const [fId, setFId] = useState('')
@@ -9,6 +10,8 @@ const FactoryAddForm = () => {
   const [numOfEmployees, setNumOfEmployees] = useState('')
   const [createdDate, setCreatedDate] = useState('')
   const [error, setError] = useState(null)
+
+  //const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -40,6 +43,8 @@ const FactoryAddForm = () => {
       console.log('New Factory was added succefully.', json)
     }
   }
+
+  //navigate('/view-factory');
 
   return (
     <main id="main" className="main">

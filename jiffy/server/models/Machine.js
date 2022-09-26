@@ -5,10 +5,10 @@ const MachineSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	mName: {
-		type: String,
-		required: true
-	},
+	// mName: {
+	// 	type: String,
+	// 	required: false
+	// },
 	maxRunningHrs: {
 		type: Number,
 		required: true
