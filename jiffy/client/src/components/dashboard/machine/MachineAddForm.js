@@ -9,11 +9,6 @@ const MachineAddForm = () => {
   const [installedDate, setInstalledDate] = useState('')
   const [error, setError] = useState(null)
 
-  // const handleSelect=(e)=>{
-  //   console.log(e);
-  //   setProducts(e)
-  // }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
