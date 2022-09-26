@@ -118,11 +118,11 @@ function CustomerAccount() {
                                     <div class="col-lg-3">
                                         <div class="ltn__tab-menu-list mb-50">
                                             <div class="nav">
-                                                <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Dashboard <i class="fas fa-home"></i></a>
-                                                <a data-toggle="tab" href="#liton_tab_1_3">Orders <i class="fas fa-file-alt"></i></a>
-                                                <a data-toggle="tab" href="#liton_tab_1_4">Payment Method <i class="fas fa-map-marker-alt"></i></a>
-                                                <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
-                                                <a href="login.html">Logout <i class="fas fa-sign-out-alt"></i></a>
+                                                <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Dashboard </a>
+                                                <a data-toggle="tab" href="#liton_tab_1_3">Orders </a>
+                                                <a data-toggle="tab" href="#liton_tab_1_4">Payment Method </a>
+                                                <a data-toggle="tab" href="#liton_tab_1_5">Account Details </a>
+                                                <a href="login.html">Logout</a>
                                             </div>
                                         </div>
                                     </div>

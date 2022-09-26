@@ -115,8 +115,8 @@ function CustomerProfile() {
         <h1>Profile</h1>
         <nav>
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li className="breadcrumb-item">Users</li>
+            <li className="breadcrumb-item"><Link to ={{pathname:`/dashboard/`}}>Home</Link></li>
+            <li className="breadcrumb-item"><Link to ={{pathname:`/customers/`}}>Customers</Link></li>
             <li className="breadcrumb-item active">Profile</li>
           </ol>
         </nav>

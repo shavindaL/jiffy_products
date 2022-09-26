@@ -60,8 +60,8 @@ function OrderDetails() {
                                     <div class="col-lg-3">
                                         <div class="ltn__tab-menu-list mb-50">
                                             <div class="nav">
-                                                <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Overview<i class="fas fa-home"></i></a>
-                                                <a data-toggle="tab" href="#liton_tab_1_3">Tracking Info<i class="fas fa-map-marker-alt"></i></a>
+                                                <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Overview</a>
+                                                <a data-toggle="tab" href="#liton_tab_1_3">Tracking Info</a>
                                             </div>
                                         </div>
                                     </div>

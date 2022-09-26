@@ -38,7 +38,7 @@ function LoginComponent() {
                                     <button disabled={isLoading} className="theme-btn-1 btn btn-block" type="submit">SIGN IN</button>
                                 </div>
                                 <div className="go-to-btn mt-20">
-                                    <a href="#"><small>FORGOTTEN YOUR PASSWORD?</small></a>
+    
                                 </div>
                             </form>
                         </div>
@@ -46,10 +46,8 @@ function LoginComponent() {
                     <div className="col-lg-6">
                         <div className="account-create text-center pt-50">
                             <h4>DON'T HAVE AN ACCOUNT?</h4>
-                            <p>Add items to your wishlistget personalised recommendations <br />
-                                check out more quickly track your orders register</p>
                             <div className="btn-wrapper">
-                                <Link to="/signup"><a href="register.html" className="theme-btn-1 btn black-btn">CREATE ACCOUNT</a></Link>
+                                <Link reloadDocument to="/signup"><a className="theme-btn-1 btn black-btn">CREATE ACCOUNT</a></Link>
                             </div>
                         </div>
                     </div>
