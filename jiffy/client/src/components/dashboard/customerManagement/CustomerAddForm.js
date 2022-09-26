@@ -41,12 +41,11 @@ const CustomerAddForm = () => {
     <main id="main" className="main">
 
       <div className="pagetitle">
-        <h1>General Tables</h1>
+        <h1>Add New Customer</h1>
         <nav>
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li className="breadcrumb-item">Tables</li>
-            <li className="breadcrumb-item active">General</li>
+            <li className="breadcrumb-item">Home</li>
+            <li className="breadcrumb-item active">Add New Customer</li>
           </ol>
         </nav>
       </div>
@@ -59,7 +58,7 @@ const CustomerAddForm = () => {
 
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title">Vertical Form</h5>
+                <h5 className="card-title">Add New Customer</h5>
 
 
                 {error &&
@@ -72,7 +71,7 @@ const CustomerAddForm = () => {
                 {/* <!-- Vertical Form --> */}
                 <form className="row g-3" onSubmit={handleSubmit}>
                   <div className="col-12">
-                    <label for="inputName" className="form-label">Your Name</label>
+                    <label for="inputName" className="form-label">Name</label>
                     <input type="text" className="form-control" id="inputName"
                       onChange={(e) => setName(e.target.value)} value={name} />
                   </div>

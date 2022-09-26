@@ -22,12 +22,11 @@ function Customers() {
         <main id="main" className="main">
 
     <div className="pagetitle">
-      <h1>General Tables</h1>
+      <h1>Customer List</h1>
       <nav>
         <ol className="breadcrumb">
-          <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li className="breadcrumb-item">Tables</li>
-          <li className="breadcrumb-item active">General</li>
+          <li className="breadcrumb-item"><Link to ={{pathname:`/dashboard/`}}>Home</Link></li>
+          <li className="breadcrumb-item active">All Customers</li>
         </ol>
       </nav>
     </div>
@@ -39,7 +38,7 @@ function Customers() {
 
           <div className="card">
             <div className="card-body">
-              <h5 className="card-title">Default Table</h5>
+              <h5 className="card-title">Customer List</h5>
 
               {/* <!-- Default Table --> */}
               <table className="table">

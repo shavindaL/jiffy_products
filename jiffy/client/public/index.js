@@ -6,7 +6,7 @@ function getCurrentURL() {
 const url = getCurrentURL()
 if (url == 'http://localhost:3000/' || url == 'http://localhost:3000/login'
     || url == 'http://localhost:3000/signup' || url == 'http://localhost:3000/account'
-    || url == 'http://localhost:3000/product') {
+    || url == 'http://localhost:3000/product' || url.indexOf("my-order")>-1) {
     document.writeln(`<link rel="shortcut icon" href="http://localhost:3000/assets/img/favicon.png" type="image/x-icon" />`)
     document.writeln(`<link rel="stylesheet" href="http://localhost:3000/assets/css/font-icons.css" />`)
     document.writeln(`<link rel="stylesheet" href="http://localhost:3000/assets/css/plugins.css" />`)
