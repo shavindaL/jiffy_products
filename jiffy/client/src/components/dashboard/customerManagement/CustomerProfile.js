@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 function CustomerProfile() {
   const navigate = useNavigate()
@@ -104,6 +106,24 @@ function CustomerProfile() {
       console.log('User deleted', json)
       navigate("/customers")
     }
+  }
+
+  const deleteSubmit = () => {
+
+    confirmAlert({
+      title: 'Confirm to delete',
+      message: 'Are you sure to do this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => handleDeleteSubmit()
+        },
+        {
+          label: 'No',
+          //onClick: () => alert('Click No')
+        }
+      ]
+    });
   }
 
   //console.log("Customer bn "+customer)
@@ -240,15 +260,15 @@ function CustomerProfile() {
                   <div className="tab-pane fade pt-3" id="profile-settings">
 
                     {/* <!-- Settings Form --> */}
-                    <form onSubmit={handleDeleteSubmit}>
+                    
 
                         <div className="row mb-3">
                           <label for="fullName" className="col-md-4 col-lg-3 col-form-label">Delete Account</label>
                           <div className="col-md-8 col-lg-9">
-                          <button type="submit" className="btn btn-primary">Delete Now</button>
+                          <button onClick={handleDeleteSubmit} className="btn btn-primary">Delete Now</button>
                           </div>
                         </div>
-                      </form>
+                    
                     {/* <!-- End settings Form --> */}
 
                   </div>

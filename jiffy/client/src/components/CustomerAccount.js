@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useLogout } from '../hooks/useLogout'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuthContext } from '../hooks/useAuthContext'
 import axios from 'axios'
 
 function CustomerAccount() {
+    const navigate = useNavigate()
+    const { logout } = useLogout()
+
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
@@ -102,9 +106,11 @@ function CustomerAccount() {
             window.location.reload();
         }
     }
-    //var customer = null
-
-
+    
+    const handleLogout = () => {
+        logout()
+        navigate("/login")
+    }
 
     return (
         <div class="liton__wishlist-area pb-70">
@@ -122,7 +128,7 @@ function CustomerAccount() {
                                                 <a data-toggle="tab" href="#liton_tab_1_3">Orders </a>
                                                 <a data-toggle="tab" href="#liton_tab_1_4">Payment Method </a>
                                                 <a data-toggle="tab" href="#liton_tab_1_5">Account Details </a>
-                                                <a href="login.html">Logout</a>
+                                                <a onClick={handleLogout}>Logout</a>
                                             </div>
                                         </div>
                                     </div>

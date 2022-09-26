@@ -20,7 +20,7 @@ function LoginComponent() {
                     <div className="col-lg-12">
                         <div className="section-title-area text-center">
                             <h1 className="section-title">Sign In <br />To  Your Account</h1>
-                            {error && <p>{error}</p>}
+                            
                             {/* <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br />
                                 Sit aliquid,  Non distinctio vel iste.</p> */}
                         </div>
@@ -28,8 +28,11 @@ function LoginComponent() {
                 </div>
                 <div className="row">
                     <div className="col-lg-6">
+                        
                         <div className="account-login-inner">
+                        
                             <form onSubmit={handleSubmit} className="ltn__form-box contact-form-box">
+                            {error && <p>*{error}</p>}
                                 <input type="text" name="email" placeholder="Email*" 
                                 value={email} onChange={(e)=>setEmail(e.target.value)}/>
                                 <input type="password" name="password" placeholder="Password*" 
