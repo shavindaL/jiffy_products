@@ -1,8 +1,14 @@
 import React from 'react';
 
 var path = ''
-if(window.location.pathname=='/account'){
+if((window.location.href).indexOf("account")>-1){
     path = 'Account'
+}else if((window.location.href).indexOf("my-order")>-1){
+    path = 'Order Details'
+}else if((window.location.href).indexOf("signup")>-1){
+    path = 'Sign up'
+}else if((window.location.href).indexOf("login")>-1){
+    path = 'Sign in'
 }
 
 function Breadcrumb() {

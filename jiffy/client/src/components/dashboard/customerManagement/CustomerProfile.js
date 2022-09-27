@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function CustomerProfile() {
+  const navigate = useNavigate()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [address, setAddress] = useState('')
@@ -100,6 +102,7 @@ function CustomerProfile() {
 
     if (response.ok) {
       console.log('User deleted', json)
+      navigate("/customers")
     }
   }
 
@@ -112,8 +115,8 @@ function CustomerProfile() {
         <h1>Profile</h1>
         <nav>
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li className="breadcrumb-item">Users</li>
+            <li className="breadcrumb-item"><Link to ={{pathname:`/dashboard/`}}>Home</Link></li>
+            <li className="breadcrumb-item"><Link to ={{pathname:`/customers/`}}>Customers</Link></li>
             <li className="breadcrumb-item active">Profile</li>
           </ol>
         </nav>

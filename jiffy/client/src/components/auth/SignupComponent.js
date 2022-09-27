@@ -38,25 +38,15 @@ function SignupComponent() {
                                 <input type="password" name="password" placeholder="Password*"
                                     onChange={(e) => setPassword(e.target.value)} value={password}/>
                                 <input type="password" name="confirmpassword" placeholder="Confirm Password*"
-                                    onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword}/>
-                                <label className="checkbox-inline">
-                                    <input type="checkbox" value="" />
-                                    I consent to Herboil processing my personal data in order to send personalized marketing material in accordance with the consent form and the privacy policy.
-                                </label>
-                                <label className="checkbox-inline">
-                                    <input type="checkbox" value="" />
-                                    By clicking "create account", I consent to the privacy policy.
-                                </label>
+                                    onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword}/>                                
                                 <div className="btn-wrapper">
                                     <button disabled={isLoading} className="theme-btn-1 btn reverse-color btn-block" type="submit">CREATE ACCOUNT</button>
                                 </div>
                             </form>
                             <div className="by-agree text-center">
-                                <p>By creating an account, you agree to our:</p>
-                                <p><a href="#">TERMS OF CONDITIONS  &nbsp; &nbsp; | &nbsp; &nbsp;  PRIVACY POLICY</a></p>
                                 <div className="go-to-btn mt-50">
                                     {/* <a href="login.html">ALREADY HAVE AN ACCOUNT ?</a> */}
-                                    <Link to="/login">ALREADY HAVE AN ACCOUNT ?</Link>
+                                    <Link reloadDocument to="/login">ALREADY HAVE AN ACCOUNT ?</Link>
                                 </div>
                             </div>
                         </div>

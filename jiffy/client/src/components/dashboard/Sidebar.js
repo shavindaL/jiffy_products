@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 function Sidebar() {
   return (
@@ -19,16 +20,20 @@ function Sidebar() {
             <i className="bi bi-menu-button-wide"></i><span>Customer Management</span><i className="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="customers-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-              <a href="http://localhost:3000/customers">
+            <Link to={{ pathname: `/customers/` }}>
+              <li>
+                {/* <a href="http://localhost:3000/customers"> */}
                 <i className="bi bi-circle"></i><span>All Customers</span>
-              </a>
-            </li>
-            <li>
-              <a href="http://localhost:3000/add-customer">
+                {/* </a> */}
+              </li>
+            </Link>
+            <Link to={{ pathname: `/add-customer/` }}>
+              <li>
+                {/* <a href="http://localhost:3000/add-customer"> */}
                 <i className="bi bi-circle"></i><span>Add New Customer</span>
-              </a>
-            </li>
+                {/* </a> */}
+              </li>
+            </Link>
           </ul>
         </li>
         {/* <!-- End Customer Nav --> */}

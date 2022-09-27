@@ -103,7 +103,7 @@ const MachineUpdateForm = () => {
                       <br />
                       <div class="col-sm-10">
                         <select class="form-select" aria-label="Default select example">
-                          <option value="null">Select a Factory</option>
+                          <option value="null">Select a Machine</option>
                           <option value="1">MCN121</option>
                           <option value="2">MCN223</option>
                           <option value="3">MCN012</option>

@@ -58,7 +58,6 @@ function CartMenu() {
                     <a href="cart.html" className="theme-btn-1 btn btn-effect-1">View Cart</a>
                     <a href="cart.html" className="theme-btn-2 btn btn-effect-2">Checkout</a>
                 </div>
-                <p>Free Shipping on All Orders Over $100!</p>
             </div>
 
         </div>

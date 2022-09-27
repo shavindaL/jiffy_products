@@ -1,11 +1,12 @@
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 
 import Home from './pages/Home';
-import AccountPage from './pages/Account';
 import ProductPage from "./pages/Shop";
 
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from "./pages/auth/Register";
+import AccountPage from './pages/Account';
+import OrderPage from './pages/OrderPage';
 
 import LoginRedirect from './pages/redirect/LoginRedirect'
 import AccountRedirect from './pages/redirect/AccountRedirect';
@@ -21,6 +22,7 @@ import MachineAddPage from "./pages/dashboard/machine/MachineAddPage";
 import MachinePage from "./pages/dashboard/machine/MachinePage";
 import MachineDetailsPage from "./pages/dashboard/machine/MachineDetails";
 import MachineUpdate from "./pages/dashboard/machine/MachineUpdate";
+import OrderRequest from "./pages/dashboard/order/OrderRequest";
 
 function App() {
     return(
@@ -32,6 +34,7 @@ function App() {
                 <Route path="/login" element={!localStorage.getItem('user')? <LoginPage />:<Navigate to='/account-redirect'/>}/>
                 <Route path="/signup" element={!localStorage.getItem('user')? <RegisterPage />:<Navigate to='/account-redirect'/>}/>
                 <Route path="/account" element={localStorage.getItem('user')? <AccountPage />:<Navigate to='/login-redirect'/>}/>
+                <Route path="/my-order/:id" element={localStorage.getItem('user')? <OrderPage />:<Navigate to='/login-redirect'/>}/>
                 <Route path="/login-redirect" element={<LoginRedirect />}/>
                 <Route path="/account-redirect" element={<AccountRedirect />}/>
 
@@ -47,6 +50,7 @@ function App() {
                 <Route path="/view-machine" element={<MachinePage />}/>
                 <Route path="/machine-details/:id" element={<MachineDetailsPage />}/>
                 <Route path="/update-machine" element={<MachineUpdate />}/>
+                <Route path="/order-request" element={<OrderRequest />}/>
 
             </Routes>
         </BrowserRouter>  

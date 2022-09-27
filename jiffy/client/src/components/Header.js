@@ -1,12 +1,15 @@
 import React from 'react';
 import { useLogout } from '../hooks/useLogout'
 import { useAuthContext } from '../hooks/useAuthContext'
+import { useNavigate, Link } from 'react-router-dom'
 
 function Header() {
+    const navigate = useNavigate()
     const { logout } = useLogout()
     const { user } = useAuthContext()
     const handleClick = () => {
         logout()
+        navigate("/login")
     }
 
     return (
@@ -44,14 +47,13 @@ function Header() {
                                         <ul>
                                             {!user && (
                                                 <>
-                                                    <li><a>Sign in</a>
-                                                    </li><li><a>Register</a></li>
-                                                    <li><a>My Account</a></li>
+                                                    <li><Link reloadDocument to ={{pathname:`/login`}}>Sign in</Link></li>
+                                                    <li><Link reloadDocument to ={{pathname:`/signup`}}>Register</Link></li>
                                                 </>
                                             )}
                                             {user && (
                                                 <>
-                                                    <li><a href="wishlist.html">{user.email}</a></li>
+                                                    <li><Link reloadDocument to ={{pathname:`/account`}}>My Account</Link></li>
                                                     <li onClick={handleClick}><a>Log out</a></li>
                                                 </>
                                             )}
@@ -60,9 +62,9 @@ function Header() {
                                 </ul>
                             </div>
                             <div class="mini-cart-icon">
-                                <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">
+                                <a href="" class="">
                                     <i class="icon-shopping-cart"></i>
-                                    <sup>2</sup>
+                                    <sup></sup>
                                 </a>
                             </div>
                             <div class="mobile-menu-toggle d-xl-none">

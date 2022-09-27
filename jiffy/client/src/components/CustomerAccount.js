@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useAuthContext } from '../hooks/useAuthContext'
+import axios from 'axios'
 
 function CustomerAccount() {
     const [name, setName] = useState('')
@@ -7,15 +9,24 @@ function CustomerAccount() {
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
     const [error, setError] = useState(null)
-    
+
+    const [customerOrders, setCustomerOrders] = useState([]);
+
+    useEffect(() => {
+        axios.get('/api/orders/JHGF48525')
+            .then((getData) => {
+                setCustomerOrders(getData.data);
+            })
+    },[])
+
     const [user, setUser] = useState(() => {
         // getting stored value
         const saved = localStorage.getItem("user");
         const initialValue = JSON.parse(saved);
         return initialValue || "";
-      });
+    });
 
-    console.log("User log "+ user)
+    console.log("User log " + user)
     //var customer = null
     const [customer, setCustomer] = useState(
         {
@@ -28,6 +39,7 @@ function CustomerAccount() {
             __v: 0,
             _id: ""
         })
+
     useEffect(() => {
         const fetchCustomer = async () => {
             // fetch(`/api/users/${id}`)
@@ -103,18 +115,18 @@ function CustomerAccount() {
                         <div class="ltn__product-tab-area">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <div class="ltn__tab-menu-list mb-50">
                                             <div class="nav">
-                                                <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Dashboard <i class="fas fa-home"></i></a>
-                                                <a data-toggle="tab" href="#liton_tab_1_3">Orders <i class="fas fa-file-alt"></i></a>
-                                                <a data-toggle="tab" href="#liton_tab_1_4">Payment Method <i class="fas fa-map-marker-alt"></i></a>
-                                                <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
-                                                <a href="login.html">Logout <i class="fas fa-sign-out-alt"></i></a>
+                                                <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Dashboard </a>
+                                                <a data-toggle="tab" href="#liton_tab_1_3">Orders </a>
+                                                <a data-toggle="tab" href="#liton_tab_1_4">Payment Method </a>
+                                                <a data-toggle="tab" href="#liton_tab_1_5">Account Details </a>
+                                                <a href="login.html">Logout</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-8">
+                                    <div class="col-lg-9">
                                         <div class="tab-content">
                                             <div class="tab-pane fade active show" id="liton_tab_1_1">
                                                 <div class="ltn__myaccount-tab-content-inner">
@@ -130,23 +142,21 @@ function CustomerAccount() {
                                                                 <tr>
                                                                     <th>Order ID</th>
                                                                     <th>Date</th>
-                                                                    <th>Status</th>
+                                                                    <th>Price</th>
+                                                                    <th>Delivery status</th>
                                                                     <th></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>Carsafe - Car Service PSD Template</td>
-                                                                    <td>Nov 22, 2020</td>
-                                                                    <td>Pendin</td>
-                                                                    <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> View Order</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Carsafe - Car Service HTML Template</td>
-                                                                    <td>Nov 10, 2020</td>
-                                                                    <td>Completed</td>
-                                                                    <td><a href="#"><i class="far fa-arrow-to-bottom mr-1"></i> View Order</a></td>
-                                                                </tr>
+                                                                {customerOrders.map((order) => (
+                                                                    <tr key={order._id}>
+                                                                        <td>{order._id}</td>
+                                                                        <td>{order.date}</td>
+                                                                        <td>{order.price}</td>
+                                                                        <td>{order.deliveryStatus}</td>
+                                                                        <td><Link to={{ pathname: `/my-order/${order._id}` }}><i class="far fa-arrow-to-bottom mr-1"></i> View Order</Link></td>
+                                                                    </tr>
+                                                                ))}
                                                             </tbody>
                                                         </table>
                                                     </div>

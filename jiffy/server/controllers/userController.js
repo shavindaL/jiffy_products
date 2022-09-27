@@ -42,6 +42,9 @@ const createUser = async (req, res) => {
     if (!validator.isEmail(email)) {
         return res.status(400).json({ error: 'Email is not valid' })
     }
+    if(await User.findOne({email})){
+        return res.status(400).json({ error: 'Email already in use' })
+    }
     if (phone.length != 10 || !isPhoneValid) {
         return res.status(400).json({ error: 'Phone number is not valid' })
     }
@@ -133,11 +136,11 @@ const signupUser = async (req, res) => {
 
     try {
         const user = await User.signup(name, email, password)
-
+        const id = user._id
         // create a token
         const token = createToken(user._id)
 
-        res.status(200).json({ email, token })
+        res.status(200).json({ id, email, token })
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
