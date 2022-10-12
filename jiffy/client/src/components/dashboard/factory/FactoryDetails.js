@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function FactoryDetails() {
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ function FactoryDetails() {
   const [createdDate, setCreatedDate] = useState('')
   const [error, setError] = useState(null)
 
-  const { id } = useParams()   
+  const { id } = useParams()
 
   const [factory, setFactory] = useState(
     {
@@ -47,24 +46,24 @@ function FactoryDetails() {
             __v: 0,
             _id: `${json["_id"]}`
           })
-          setFId(json["fId"])
-          setFName(json["fName"])
-          setFLocation(json["fLocation"])
-          setNumOfMachines (json["numOfMachines"])
-          setNumOfVehicles(json["numOfVehicles"])
-          setNumOfEmployees(json["numOfEmployees"])
-          setCreatedDate(json["createdDate"])
-      } else{
+        setFId(json["fId"])
+        setFName(json["fName"])
+        setFLocation(json["fLocation"])
+        setNumOfMachines(json["numOfMachines"])
+        setNumOfVehicles(json["numOfVehicles"])
+        setNumOfEmployees(json["numOfEmployees"])
+        setCreatedDate(json["createdDate"])
+      } else {
         console.log("failed")
       }
-       
+
     }
 
     fetchFactory()
-    
+
   }, [setFactory])
 
-  
+
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
 
@@ -130,88 +129,88 @@ function FactoryDetails() {
         </nav>
       </div>
       {/* <!-- End Page Title --> */}
-      
-        <section className="section profile">
-          <div className="row">
-            <div className="col-xl-10">
 
-              <div className="card">
-                <div className="card-body pt-3">
-                  {/* <!-- Bordered Tabs --> */}
-                  <ul className="nav nav-tabs nav-tabs-bordered">
+      <section className="section profile">
+        <div className="row">
+          <div className="col-xl-10">
 
-                    <li className="nav-item">
-                      <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#factory-overview">Overview</button>
-                    </li>
+            <div className="card">
+              <div className="card-body pt-3">
+                {/* <!-- Bordered Tabs --> */}
+                <ul className="nav nav-tabs nav-tabs-bordered">
 
-                    <li className="nav-item">
-                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#factory-update">Update</button>
-                    </li>
+                  <li className="nav-item">
+                    <button className="nav-link active" data-bs-toggle="tab" data-bs-target="#factory-overview">Overview</button>
+                  </li>
 
-                    <li className="nav-item">
-                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#factory-delete">Delete</button>
-                    </li>
+                  <li className="nav-item">
+                    <button className="nav-link" data-bs-toggle="tab" data-bs-target="#factory-update">Update</button>
+                  </li>
 
-                  </ul>
-                  <div className="tab-content pt-2">
+                  <li className="nav-item">
+                    <button className="nav-link" data-bs-toggle="tab" data-bs-target="#factory-delete">Delete</button>
+                  </li>
 
-                    <div className="tab-pane fade show active profile-overview" id="factory-overview">
+                </ul>
+                <div className="tab-content pt-2">
 
-                      <h5 className="card-title">Factory Details</h5>
+                  <div className="tab-pane fade show active profile-overview" id="factory-overview">
 
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label ">Factory ID:</div>
-                        <div className="col-lg-9 col-md-8">{factory["fId"]}</div>
-                      </div>
+                    <h5 className="card-title">Factory Details</h5>
 
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label ">Factory Name:</div>
-                        <div className="col-lg-9 col-md-8">{factory["fName"]}</div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label">Factory Location:</div>
-                        <div className="col-lg-9 col-md-8">{factory["fLocation"]}</div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label">Number of Machines:</div>
-                        <div className="col-lg-9 col-md-8">{factory["numOfMachines"]}</div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label">Number of Vehicles:</div>
-                        <div className="col-lg-9 col-md-8">{factory["numOfVehicles"]}</div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label">Number of Employees:</div>
-                        <div className="col-lg-9 col-md-8">{factory["numOfEmployees"]}</div>
-                      </div>
-
-                      <div className="row">
-                        <div className="col-lg-3 col-md-4 label">Factory started date:</div>
-                        <div className="col-lg-9 col-md-8">{factory["createdDate"]}</div>
-                      </div>
-
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label ">Factory ID:</div>
+                      <div className="col-lg-9 col-md-8">{factory["fId"]}</div>
                     </div>
 
-                    <div className="tab-pane fade profile-edit pt-3" id="factory-update">
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label ">Factory Name:</div>
+                      <div className="col-lg-9 col-md-8">{factory["fName"]}</div>
+                    </div>
 
-                      {/*Factory Update Form*/}
-                      <form onSubmit={handleUpdateSubmit}>
-                        {error &&
-                          <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                            {error}
-                            <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                          </div>
-                        }
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label">Factory Location:</div>
+                      <div className="col-lg-9 col-md-8">{factory["fLocation"]}</div>
+                    </div>
 
-                        <div className="row mb-3">
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label">Number of Machines:</div>
+                      <div className="col-lg-9 col-md-8">{factory["numOfMachines"]}</div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label">Number of Vehicles:</div>
+                      <div className="col-lg-9 col-md-8">{factory["numOfVehicles"]}</div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label">Number of Employees:</div>
+                      <div className="col-lg-9 col-md-8">{factory["numOfEmployees"]}</div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col-lg-3 col-md-4 label">Factory started date:</div>
+                      <div className="col-lg-9 col-md-8">{factory["createdDate"]}</div>
+                    </div>
+
+                  </div>
+
+                  <div className="tab-pane fade profile-edit pt-3" id="factory-update">
+
+                    {/*Factory Update Form*/}
+                    <form onSubmit={handleUpdateSubmit}>
+                      {error &&
+                        <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                          {error}
+                          <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                      }
+
+                      <div className="row mb-3">
                         <label for="fId" className="col-md-4 col-lg-3 col-form-label">Factory ID:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="fId" type="text" className="form-control" id="fId"
-                          onChange={(e) => setFId(e.target.value)} value={fId} />
+                            onChange={(e) => setFId(e.target.value)} value={fId} />
                         </div>
                       </div>
 
@@ -219,7 +218,7 @@ function FactoryDetails() {
                         <label for="fName" className="col-md-4 col-lg-3 col-form-label">Factory Name:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="fName" type="text" className="form-control" id="fName"
-                          onChange={(e) => setFName(e.target.value)} value={fName} />
+                            onChange={(e) => setFName(e.target.value)} value={fName} />
                         </div>
                       </div>
 
@@ -227,7 +226,7 @@ function FactoryDetails() {
                         <label for="fLocation" className="col-md-4 col-lg-3 col-form-label">Factory Location:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="fLocation" type="text" className="form-control" id="fLocation"
-                          onChange={(e) => setFLocation(e.target.value)} value={fLocation} />
+                            onChange={(e) => setFLocation(e.target.value)} value={fLocation} />
                         </div>
                       </div>
 
@@ -235,7 +234,7 @@ function FactoryDetails() {
                         <label for="numOfMachines" className="col-md-4 col-lg-3 col-form-label">Number of Machines:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="numOfMachines" type="text" className="form-control" id="numOfMachines"
-                          onChange={(e) => setNumOfMachines(e.target.value)} value={numOfMachines} />
+                            onChange={(e) => setNumOfMachines(e.target.value)} value={numOfMachines} />
                         </div>
                       </div>
 
@@ -243,7 +242,7 @@ function FactoryDetails() {
                         <label for="numOfVehicles" className="col-md-4 col-lg-3 col-form-label">Number of Vehicles:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="numOfVehicles" type="text" className="form-control" id="numOfVehicles"
-                          onChange={(e) => setNumOfVehicles(e.target.value)} value={numOfVehicles} />
+                            onChange={(e) => setNumOfVehicles(e.target.value)} value={numOfVehicles} />
                         </div>
                       </div>
 
@@ -251,7 +250,7 @@ function FactoryDetails() {
                         <label for="numOfEmployees" className="col-md-4 col-lg-3 col-form-label">Number of Employees:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="numOfEmployees" type="text" className="form-control" id="numOfEmployees"
-                          onChange={(e) => setNumOfEmployees(e.target.value)} value={numOfEmployees} />
+                            onChange={(e) => setNumOfEmployees(e.target.value)} value={numOfEmployees} />
                         </div>
                       </div>
 
@@ -259,45 +258,45 @@ function FactoryDetails() {
                         <label for="createdDate" className="col-md-4 col-lg-3 col-form-label">Factory created Date:</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="createdDate" type="text" className="form-control" id="createdDate"
-                          onChange={(e) => setCreatedDate(e.target.value)} value={createdDate} />
+                            onChange={(e) => setCreatedDate(e.target.value)} value={createdDate} />
                         </div>
                       </div>
-                                              
-                        <div className="text-center">
-                          <button type="submit" className="btn btn-primary">Save Changes</button>
-                        </div>
-                      </form>
-                      {/* End Profile Edit Form */}
 
-                    </div>
+                      <div className="text-center">
+                        <button type="submit" className="btn btn-primary">Save Changes</button>
+                      </div>
+                    </form>
+                    {/* End Profile Edit Form */}
 
-                    <div className="tab-pane fade pt-3" id="factory-delete">
+                  </div>
+
+                  <div className="tab-pane fade pt-3" id="factory-delete">
 
                     {/* Delete */}
                     <form onSubmit={handleDeleteSubmit}>
 
-                        <div className="row mb-3">
+                      <div className="row mb-3">
                         <label for="fullName" className="col-md-4 col-lg-5 col-form-label">Are you sure you want to delete this factory?</label>
-                          <div className="col-md-8 col-lg-9">
+                        <div className="col-md-8 col-lg-9">
                           <button type="submit" className="btn btn-primary">Delete Permanently</button>
-                          </div>
                         </div>
-                      </form>
+                      </div>
+                    </form>
                     {/* <!-- End Delete --> */}
 
                   </div>
 
-                  </div>
-                  {/* <!-- End Bordered Tabs --> */}
-
                 </div>
-              </div>
+                {/* <!-- End Bordered Tabs --> */}
 
+              </div>
             </div>
 
           </div>
-        </section>
-      
+
+        </div>
+      </section>
+
 
 
     </main>
