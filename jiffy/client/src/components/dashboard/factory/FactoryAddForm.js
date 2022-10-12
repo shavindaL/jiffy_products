@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const FactoryAddForm = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const FactoryAddForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const factory = {fId, fName, fLocation, numOfMachines, numOfVehicles, numOfEmployees, createdDate}
+    const factory = { fId, fName, fLocation, numOfMachines, numOfVehicles, numOfEmployees, createdDate }
 
     const response = await fetch('/api/factory', {
       method: 'POST',
@@ -40,11 +40,9 @@ const FactoryAddForm = () => {
       setCreatedDate('')
       setError(null)
       console.log('New Factory was added succefully.', json)
-      navigate("/view-machine");
+      navigate("/view-factory");
     }
   }
-
-  //navigate('/view-factory');
 
   return (
     <main id="main" className="main">
@@ -83,7 +81,7 @@ const FactoryAddForm = () => {
 
                 {/* <!-- Vertical Form --> */}
                 <form className="row g-3" onSubmit={handleSubmit}>
-                  
+
                   <div className="col-12">
                     <label for="inputFID" className="form-label">Factory ID</label>
                     <input type="text" className="form-control" id="inputFName"
@@ -101,7 +99,7 @@ const FactoryAddForm = () => {
                     <input type="text" className="form-control" id="inputFLocation"
                       onChange={(e) => setFLocation(e.target.value)} value={fLocation} />
                   </div>
-                  
+
                   <div className="col-12">
                     <label for="inputNumOfMachines" className="form-label">Number Of Machines</label>
                     <input type="Number" className="form-control" id="inputNumOfMachines"

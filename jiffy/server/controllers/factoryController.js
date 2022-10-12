@@ -4,16 +4,8 @@ const Factory = require('../models/Factory')
 const createFactory = async (req, res) => {
     const { fId, fName, fLocation, numOfEmployees, numOfMachines, numOfVehicles, createdDate } = req.body
 
-    if (!fId) {
-        return res.status(400).json({ error: 'Factory ID field must be filled.' })
-    }
-
     if (await Factory.findOne({ fId })) {
         return res.status(400).json({ error: 'Factory ID already exists.' })
-    }
-
-    if (!fLocation) {
-        return res.status(400).json({ error: 'Factory Location field must be filled.' })
     }
 
     if (fId.length < 6) {
@@ -32,9 +24,9 @@ const createFactory = async (req, res) => {
         return res.status(400).json({ error: 'Number of Vehicles cannot be less than 0.' })
     }
 
-    // if (createdDate < Date.now()) {
-    //     return res.status(400).json({ error: 'Number of Vehicles cannot be less than 0.' })
-    // }
+    if (!fId || !fName || !fLocation || !numOfEmployees || !numOfMachines || !numOfMachines || !createdDate) {
+        return res.status(400).json({ error: 'All fields must be filled.' })
+    }
 
     try {
         const factory = await Factory.create({ fId, fName, fLocation, numOfEmployees, numOfMachines, numOfVehicles, createdDate })
@@ -44,14 +36,13 @@ const createFactory = async (req, res) => {
     }
 }
 
-
 // Get all Factories
 const getAllFactories = async (req, res) => {
     const factory = await Factory.find();
     res.send(factory);
 }
 
-// Get a single Factory
+// Get a single Factory by its ID
 const getFactory = async (req, res) => {
     const factory = await Factory.findById(req.params.id);
     res.send(factory);
@@ -63,35 +54,14 @@ const deleteFactory = async (req, res) => {
     res.send(factory);
 }
 
-// // Update a Factory
-// const updateFactory = async (req, res) => {
-//     const factory = await Factory.findByIdAndUpdate(
-//         req.params.id, {
-//         fId: req.body.fId,
-//         fName: req.body.fName,
-//         fLocation: req.body.fLocation,
-//         numOfEmployees: req.body.numOfEmployees,
-//         numOfMachines: req.body.numOfMachines,
-//         numOfVehicles: req.body.numOfVehicles,
-//         createdDate: req.body.createdDate
-//     }, { new: true }
-//     );
-//     res.send(factory);
-// }
-
-
 // Update a Factory
 const updateFactory = async (req, res) => {
     
     const { id } = req.params
     const { fId, fName, fLocation, numOfEmployees, numOfMachines, numOfVehicles, createdDate } = req.body
 
-    if (!fId) {
-        return res.status(400).json({ error: 'Factory ID field must be filled.' })
-    }
-
-    if (!fLocation) {
-        return res.status(400).json({ error: 'Factory Location field must be filled.' })
+    if (!fId || !fName || !fLocation || !numOfEmployees || !numOfMachines || !numOfMachines || !createdDate) {
+        return res.status(400).json({ error: 'All fields must be filled.' })
     }
 
     if (fId.length < 6) {

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 function Machine() {
+  const navigate = useNavigate()
   const [machine, setMachine] = useState(null)
   const [factory, searchFactory] = useState('')
+  const { mFactory } = useParams()
 
   useEffect(() => {
     const fetchMachine = async () => {
@@ -18,6 +20,22 @@ function Machine() {
 
     fetchMachine()
   }, [])
+
+  // useEffect(() => {
+  //   const fetchMachineByFId = async () => {
+  //     const response = await fetch(`/api/machine/${mFactory}`)
+  //     const json = await response.json()
+
+  //     console.log(json)
+  //     console.log(json[0])
+
+  //     if (response.ok) {
+  //       setMachine(json)
+  //     }
+  //   }
+
+  //   fetchMachine()
+  // }, [])
 
   return (
     <main id="main" className="main">
@@ -78,6 +96,7 @@ function Machine() {
                       <th scope="col">Machine ID</th>
                       <th scope="col">Product Created</th>
                       <th scope="col">Max. Running Hours per week</th>
+                      <th scope="col">Factory ID</th>
                       <th scope="col">View</th>
                     </tr>
                   </thead>
@@ -87,6 +106,7 @@ function Machine() {
                         <th scope="row">{machine.mId}</th>
                         <td>{machine.product}</td>
                         <td>{machine.maxRunningHrs}</td>
+                        <td>{machine.mFactory}</td>
                         <td><Link to={{ pathname: `/machine-details/${machine._id}` }}>View Machine Details</Link></td>
                       </tr>
                     ))}
@@ -94,7 +114,9 @@ function Machine() {
                 </table>
                 {/* <!-- End Default Table Example --> */}
               </div>
+              
             </div>
+            <button type="button" class="btn btn-outline-primary" onClick={() => navigate("/add-machine")}>Add New Machine</button>
           </div>
         </div>
       </section>
@@ -102,5 +124,6 @@ function Machine() {
     </main>
   );
 }
+
 
 export default Machine;

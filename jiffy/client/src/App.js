@@ -22,7 +22,7 @@ import MachineAddPage from "./pages/dashboard/machine/MachineAddPage";
 import MachinePage from "./pages/dashboard/machine/MachinePage";
 import MachineDetailsPage from "./pages/dashboard/machine/MachineDetails";
 import MachineUpdate from "./pages/dashboard/machine/MachineUpdate";
-import OrderRequest from "./pages/dashboard/order/OrderRequest";
+import OrderRequestPage from "./pages/dashboard/factory/OrderRequestPage";
 
 function App() {
     return(
@@ -50,7 +50,7 @@ function App() {
                 <Route path="/view-machine" element={<MachinePage />}/>
                 <Route path="/machine-details/:id" element={<MachineDetailsPage />}/>
                 <Route path="/update-machine" element={<MachineUpdate />}/>
-                <Route path="/order-request" element={<OrderRequest />}/>
+                <Route path="/order-request" element={<OrderRequestPage />}/>
 
             </Routes>
         </BrowserRouter>  

@@ -4,6 +4,7 @@ const {
     createMachine,
     getAllMachines,
     getMachine,
+    getMachinesByFId,
     deleteMachine,
     updateMachine   
 } = require('../controllers/machineController')
@@ -15,6 +16,9 @@ router.post('/', createMachine)
 
 // GET all Machines
 router.get('/', getAllMachines)
+
+// GET Machines by FId
+router.get('/', getMachinesByFId)
 
 // GET a single Machine by ID
 router.get('/:id', getMachine)

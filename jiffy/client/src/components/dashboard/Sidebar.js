@@ -74,9 +74,31 @@ function Sidebar() {
             </a>
           </li>
 
+          <li>
+            <a href="/order-request">
+              <i class="bi bi-circle"></i><span>Order Requests</span>
+            </a>
+          </li>
+
         </ul>
       </li>
         {/* <!-- End Factory Nav --> */}
+
+        <li className="nav-item">
+          <a className="nav-link collapsed" data-bs-target="#customers-nav" data-bs-toggle="collapse" href="#">
+            <i className="bi bi-menu-button-wide"></i><span>Order Management</span><i className="bi bi-chevron-down ms-auto"></i>
+          </a>
+          
+        </li>
+        {/* <!-- End Order Nav --> */}
+
+        <li className="nav-item">
+          <a className="nav-link collapsed" data-bs-target="#customers-nav" data-bs-toggle="collapse" href="#">
+            <i className="bi bi-menu-button-wide"></i><span>Inventory Management</span><i className="bi bi-chevron-down ms-auto"></i>
+          </a>
+          
+        </li>
+        {/* <!-- End Inventory Nav --> */}
 
       </ul>
 

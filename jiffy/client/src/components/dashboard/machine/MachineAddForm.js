@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const MachineAddForm = () => {
+  const navigate = useNavigate();
   const [mId, setMId] = useState('')
   const [mName, setMName] = useState('')
   const [maxRunningHrs, setMaxRunningHrs] = useState('')
@@ -36,6 +38,7 @@ const MachineAddForm = () => {
       setInstalledDate('')
       setError(null)
       console.log('New Machine was added succefully.', json)
+      navigate("/view-machine");
     }
   }
 
@@ -109,7 +112,7 @@ const MachineAddForm = () => {
                     <div className="input-group mb-3">
 
                       <label class="col-12 col-form-label" >Product Created using the Machine:</label>
-                      <br/>
+                      <br />
 
                       <select className="form-select" onChange={e => setProducts(e.target.value)}>
                         <option value="Pots" selected>Pots</option>
