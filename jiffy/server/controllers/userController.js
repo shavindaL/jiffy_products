@@ -1,7 +1,9 @@
 const User = require('../models/User')
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const validator = require('validator')
+var sendEmail = require('../utils/sendEmail')
 
 const createToken = (_id) => {
     return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '2d' })
@@ -37,24 +39,26 @@ const createUser = async (req, res) => {
     var isPhoneValid = /^[0-9,.]*$/.test(phone);
 
     if (!name || !email || !address || !phone || !password) {
-        return res.status(400).json({ error: 'All fields must be filled' })
+        return res.status(400).json({ error: 'All fields must be filled' , errorPosition: '1'})
     }
     if (!validator.isEmail(email)) {
-        return res.status(400).json({ error: 'Email is not valid' })
+        return res.status(400).json({ error: 'Email is not valid', errorPosition: '2' })
     }
     if(await User.findOne({email})){
-        return res.status(400).json({ error: 'Email already in use' })
+        return res.status(400).json({ error: 'Email already in use', errorPosition: '3' })
     }
     if (phone.length != 10 || !isPhoneValid) {
-        return res.status(400).json({ error: 'Phone number is not valid' })
+        return res.status(400).json({ error: 'Phone number is not valid', errorPosition: '4' })
     }
     if (!validator.isStrongPassword(password)) {
-        return res.status(400).json({ error: 'Password not strong enough. Must contains uppercase, lowercase, numbers and more than eight characters' })
+        return res.status(400).json({ error: 'Password not strong enough. Must contains uppercase, lowercase, numbers and more than eight characters', errorPosition: '5' })
     }
 
     // add doc to db
     try {
         const user = await User.create({ name, email, address, phone, password })
+        sendEmail(email, 'Jiffy Account Created', `Your account has been created successfully. Email: ${email} Password: ${password}`)
+
         res.status(200).json(user)
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -74,6 +78,8 @@ const deleteUser = async (req, res) => {
     if (!user) {
         return res.status(404).json({ error: 'User does not exsist' })
     }
+    sendEmail(user.email, 'Jiffy Account Deleted', 'Your account has been deleted successfully. If you need to use our services you need to re-create an account.')
+
 
     res.status(200).json(user)
 
@@ -90,7 +96,7 @@ const updateUser = async (req, res) => {
     }
     if (!validator.isEmail(req.body.email)) {
         return res.status(400).json({ error: 'Email is not valid' })
-    }
+    }    
     if (phone.length != 10 || !isPhoneValid) {
         return res.status(400).json({ error: 'Phone number is not valid' })
     }
@@ -99,7 +105,13 @@ const updateUser = async (req, res) => {
         return res.status(404).json({ error: 'User does not exsist' })
     }
 
-    const user = await User.findOneAndUpdate({ _id: id }, {
+    var user = await User.findOne({email})
+
+    if(user._id != id){
+        return res.status(400).json({ error: 'Email already in use' })
+    }
+
+    user = await User.findOneAndUpdate({ _id: id }, {
         name: req.body.name,
         email: req.body.email,
         address: req.body.address,
@@ -109,6 +121,9 @@ const updateUser = async (req, res) => {
     if (!user) {
         return res.status(404).json({ error: 'User does not exsist' })
     }
+
+    sendEmail(email, 'Jiffy Account Updated', 'Your account has been updated successfully. Thanks for using our services')
+
 
     res.status(200).json(user)
 }
@@ -132,10 +147,10 @@ const loginUser = async (req, res) => {
 
 // signup user
 const signupUser = async (req, res) => {
-    const { name, email, password } = req.body
+    const { name, email, password, confirmPassword } = req.body
 
     try {
-        const user = await User.signup(name, email, password)
+        const user = await User.signup(name, email, password, confirmPassword)
         const id = user._id
         // create a token
         const token = createToken(user._id)
@@ -146,6 +161,50 @@ const signupUser = async (req, res) => {
     }
 }
 
+// reset password
+const resetPassword = async (req, res) => {    
+    const { id } = req.params
+    const { currentPassword, newPassword, confirmPassword} = req.body
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+        return res.status(400).json({ error: 'All fields must be filled' })
+    }
+    if (!(newPassword===confirmPassword)){
+        return res.status(400).json({ error: 'New password and confirm password mismatch' })
+    }    
+    if (!validator.isStrongPassword(newPassword)){
+        return res.status(400).json({ error: 'Password not strong enough. Must contains uppercase, lowercase, numbers and more than eight characters' })
+    }
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ error: 'User does not exsist' })
+    }
+
+    var user = await User.findOne({ _id: id })
+
+    if(!user){
+        return res.status(400).json({ error: 'User does not exsist' })
+    }
+
+    const match = await bcrypt.compare(currentPassword, user.password)
+
+    if(!match){
+        return res.status(400).json({ error: 'Current password is incorrect' })
+    }
+
+    const salt = await bcrypt.genSalt(10)
+    const hash = await bcrypt.hash(newPassword, salt)
+
+    user = await User.findOneAndUpdate({ _id: id }, {
+        password: hash,
+    })
+
+    if (!user) {
+        return res.status(404).json({ error: 'User does not exsist' })
+    }
+
+    res.status(200).json(user)
+}
+
 module.exports = {
     createUser,
     getUsers,
@@ -153,5 +212,6 @@ module.exports = {
     deleteUser,
     updateUser,
     loginUser,
-    signupUser
+    signupUser,
+    resetPassword
 }

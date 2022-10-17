@@ -32,7 +32,7 @@ function LoginComponent() {
                         <div className="account-login-inner">
                         
                             <form onSubmit={handleSubmit} className="ltn__form-box contact-form-box">
-                            {error && <p>*{error}</p>}
+                            {error && <p style={{ color: 'red' }}>*{error}</p>}
                                 <input type="text" name="email" placeholder="Email*" 
                                 value={email} onChange={(e)=>setEmail(e.target.value)}/>
                                 <input type="password" name="password" placeholder="Password*" 

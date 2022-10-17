@@ -11,7 +11,7 @@ function SignupComponent() {
 
     const handleSubmit = async(e) =>{
         e.preventDefault()
-        await signup(name, email, password)
+        await signup(name, email, password, confirmPassword)
     }
 
     return (
@@ -31,7 +31,7 @@ function SignupComponent() {
                     <div className="col-lg-6 offset-lg-3">
                         <div className="account-login-inner">
                             <form onSubmit={handleSubmit} className="ltn__form-box contact-form-box">
-                            {error && <p>*{error}</p>}
+                            {error && <p style={{ color: 'red' }}>*{error}</p>}
                                 <input type="text" name="name" placeholder="Name*"
                                     onChange={(e) => setName(e.target.value)} value={name} />
                                 <input type="email" name="email" placeholder="Email*"

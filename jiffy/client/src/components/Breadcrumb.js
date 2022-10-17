@@ -9,6 +9,8 @@ if((window.location.href).indexOf("account")>-1){
     path = 'Sign up'
 }else if((window.location.href).indexOf("login")>-1){
     path = 'Sign in'
+}else if((window.location.href).indexOf("AddCustomerPayment")>-1){
+    path = 'Payment method'
 }
 
 function Breadcrumb() {
