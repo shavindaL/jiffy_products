@@ -5,7 +5,6 @@ import RawInsertForm from '../../../components/dashboard/factory/RawInsertForm';
 import Sidebar from '../../../components/dashboard/Sidebar';
 import Footer from '../../../components/dashboard/Footer';
 
-
 function RawInsert() {
     return (
         <div>
