@@ -4,18 +4,13 @@ const RawInsertForm = () => {
   const [fId, setFId] = useState('')
   const [currentDate, setCurrentDate] = useState('')
   const [rawMaterial, setRawMaterial] = useState('')
-  const [noRawMaterial, setNoRawMaterial] = useState('')
+  const [noOfRaws, setnoOfRaws] = useState('')
   const [error, setError] = useState(null)
-
-  // const handleSelect=(e)=>{
-  //   console.log(e);
-  //   setProducts(e)
-  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const factory = {fId, currentDate, rawMaterial, noRawMaterial}
+    const factory = {fId, currentDate, rawMaterial, noOfRaws}
 
     const response = await fetch('/api/factory', {
       method: 'POST',
