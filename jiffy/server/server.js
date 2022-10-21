@@ -3,7 +3,6 @@ require('dotenv').config()
 const express = require('express')
 
 const cors = require('cors')
-const orderRoutes = require("./routes/orderRoutes")
 
 const mongoose = require('mongoose')
 
@@ -11,8 +10,11 @@ const mongoose = require('mongoose')
 const app = express()
 
 const userRoutes = require('./routes/userRoutes')
+const orderRoutes = require("./routes/orderRoutes")
 const factoryRoutes = require('./routes/factoryRoutes')
 const machineRoutes = require('./routes/machineRoutes')
+const machineStatsRoutes = require('./routes/machineStatsRoutes')
+const rawDataRoutes = require('./routes/rawDataRoutes')
 
 // middleware
 app.use(express.json())
@@ -29,6 +31,8 @@ app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/factory', factoryRoutes)
 app.use('/api/machine', machineRoutes)
+app.use('/api/machineStats', machineStatsRoutes)
+app.use('/api/rawData', rawDataRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
