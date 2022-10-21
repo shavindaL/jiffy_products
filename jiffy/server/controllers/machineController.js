@@ -30,8 +30,16 @@ const createMachine = async (req, res) => {
 
 // Get all Machine
 const getAllMachines = async (req, res) => {
-    const machine = await Machine.find();
-    res.send(machine);
+    const factoryId = req.query.factory;
+ 
+    if(factoryId){
+        const machines = await Machine.find({mFactory: factoryId});
+        res.send(machines);
+    }else{
+       const  machines = await Machine.find()
+       res.send(machines);
+    }
+   
 }
 
 // Get Machines by factory IDs
@@ -94,5 +102,5 @@ module.exports = {
     getMachinesByFId,
     getMachine,
     deleteMachine,
-    updateMachine
+    updateMachine,
 }

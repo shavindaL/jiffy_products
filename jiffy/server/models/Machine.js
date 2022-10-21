@@ -24,11 +24,13 @@ const MachineSchema = new mongoose.Schema({
 	},
 	totalProductions: {
 		type: Number,
-		required: false
+		required: false,
+		default: 0
 	},
 	totalRunningHrs: {
 		type: Number,
-		required: false
+		required: false,
+		default: 0
 	}
 })
 

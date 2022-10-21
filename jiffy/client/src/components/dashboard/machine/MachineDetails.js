@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import MachineDeleteForm from './MachineDeleteForm';
+//import MachineUpdateBtn from './MachineUpdateBtn';
 
 function MachineDetails() {
   const navigate = useNavigate();
@@ -96,24 +98,6 @@ function MachineDetails() {
     }
   }
 
-  const handleDeleteSubmit = async (e) => {
-    e.preventDefault()
-
-    const response = await fetch('http://localhost:5000/api/machine/' + id, {
-      method: 'DELETE'
-    })
-    const json = await response.json()
-
-    if (!response.ok) {
-      setError(json.error)
-      console.log(json.error)
-    }
-
-    if (response.ok) {
-      console.log('Machine deleted successfully.', json)
-      navigate("/view-machine");
-    }
-  }
 
   return (
     <main id="main" className="main">
@@ -147,9 +131,7 @@ function MachineDetails() {
                     <button className="nav-link" data-bs-toggle="tab" data-bs-target="#machine-update">Update</button>
                   </li>
 
-                  <li className="nav-item">
-                    <button className="nav-link" data-bs-toggle="tab" data-bs-target="#machine-delete">Delete</button>
-                  </li>
+
 
                 </ul>
                 <div className="tab-content pt-2">
@@ -192,6 +174,8 @@ function MachineDetails() {
                       <div className="col-lg-3 col-md-4 label">Total Running Hours:</div>
                       <div className="col-lg-9 col-md-8">{machine["totalRunningHrs"]}</div>
                     </div>
+
+                    <MachineDeleteForm setError={setError} id={id} />
 
                   </div>
 
@@ -278,40 +262,25 @@ function MachineDetails() {
                       <div className="row mb-3">
                         <label for="totalProductions" className="col-md-4 col-lg-3 col-form-label">Total Productions:</label>
                         <div className="col-md-8 col-lg-9">
-                          <input name="totalProductions" type="text" className="form-control" id="totalProductions"
-                            onChange={(e) => setTotalProductions(e.target.value)} value={totalProductions} />
+                          <input name="totalProductions" type="text" className="form-control" id="totalProductions" readOnly={true}
+                            onChange={(e) => setTotalProductions(e.target.value)} value={totalProductions} disabled/>
                         </div>
                       </div>
 
                       <div className="row mb-3">
                         <label for="totalRunningHrs" className="col-md-4 col-lg-3 col-form-label">Total Running Hours:</label>
                         <div className="col-md-8 col-lg-9">
-                          <input name="totalRunningHrs" type="text" className="form-control" id="totalRunningHrs"
-                            onChange={(e) => setTotalRunningHrs(e.target.value)} value={totalRunningHrs} />
+                          <input name="totalRunningHrs" type="text" className="form-control" id="totalRunningHrs" readOnly={true}
+                            onChange={(e) => setTotalRunningHrs(e.target.value)} value={totalRunningHrs} disabled/>
                         </div>
                       </div>
 
                       <div className="text-center">
+                        {/* <MachineUpdateBtn/> */}
                         <button type="submit" className="btn btn-primary">Save Changes</button>
                       </div>
                     </form>
                     {/* End Profile Edit Form */}
-
-                  </div>
-
-                  <div className="tab-pane fade pt-3" id="machine-delete">
-
-                    {/* Delete */}
-                    <form onSubmit={handleDeleteSubmit}>
-
-                      <div className="row mb-3">
-                        <label for="fullName" className="col-md-4 col-lg-5 col-form-label">Are you sure you want to delete this machine?</label>
-                        <div className="col-md-8 col-lg-9">
-                          <button type="submit" className="btn btn-primary">Delete Permanently</button>
-                        </div>
-                      </div>
-                    </form>
-                    {/* <!-- End Delete --> */}
 
                   </div>
 

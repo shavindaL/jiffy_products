@@ -3,39 +3,37 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 function Machine() {
   const navigate = useNavigate()
-  const [machine, setMachine] = useState(null)
-  const [factory, searchFactory] = useState('')
-  const { mFactory } = useParams()
+  const [machine, setMachines] = useState([])
+  const [factories, setFactories] = useState([])
+  const [factoryFilter, setFactoryFilter] = useState('')
+ 
+  const fetchMachines = async ({factory}) => {
+    const url = factory && factory !== "ALL" ? `/api/machine?factory=${factory}` : '/api/machine'
+    const response = await fetch(url)
+    const json = await response.json()
+
+    if (response.ok) {
+      setMachines(json)
+    }
+  }
+
+  const fetchFactories = async () => {
+    const response = await fetch( '/api/factory')
+    const json = await response.json()
+
+    if (response.ok) {
+      setFactories(json)
+    }
+  }
 
   useEffect(() => {
-    const fetchMachine = async () => {
-      const response = await fetch(`/api/machine`)
-      const json = await response.json()
-      console.log(json)
-      console.log(json[0])
-      if (response.ok) {
-        setMachine(json)
-      }
-    }
-
-    fetchMachine()
+    fetchFactories()
+    fetchMachines()
   }, [])
 
-  // useEffect(() => {
-  //   const fetchMachineByFId = async () => {
-  //     const response = await fetch(`/api/machine/${mFactory}`)
-  //     const json = await response.json()
-
-  //     console.log(json)
-  //     console.log(json[0])
-
-  //     if (response.ok) {
-  //       setMachine(json)
-  //     }
-  //   }
-
-  //   fetchMachine()
-  // }, [])
+  useEffect(() => {
+    fetchMachines({factory: factoryFilter})
+  }, [factoryFilter])
 
   return (
     <main id="main" className="main">
@@ -64,24 +62,15 @@ function Machine() {
                   <label class="col-sm-2 col-form-label" >Select a factory:</label>
                   <br />
 
-                  {/* <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected="">All factories</option>
-                      <option value="1">FAC100</option>
-                      <option value="2">FAC200</option>
-                      <option value="3">FAC300</option>
-                    </select>
-                  </div> */}
-
                   <div className="col-4">
                     <div className="input-group mb-3">
-                      {/* <input type="text" className="form-control" placeholder="Search" value={searchTerm} onChange={e => { setSearchTerm(e.target.value) }} /> */}
-                      
-                      <select className="form-select" onChange={e => searchFactory(e.target.value)}>
-                        <option value="FAC100" selected>All factories</option>
-                        <option value="FAC100">FAC100</option>
-                        <option value="FAC200">FAC200</option>
-                        <option value="FAC300">FAC300</option>
+
+                      <select className="form-select" onChange={e => setFactoryFilter(e.target.value)}>
+                        <option value={"ALL"} selected>All factories</option>
+                        {factories.map(factory => (
+                          <option key={factory.fId} value={factory.fId}>{factory.fId}</option>
+                        ))}
+                       
                       </select>
                       
                     </div>

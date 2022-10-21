@@ -1,17 +1,17 @@
 import React from 'react';
 
 import Header from '../../../components/dashboard/Header';
-import MachineUpdateForm from '../../../components/dashboard/machine/MachineUpdateForm';
+import RawInsertForm from '../../../components/dashboard/factory/RawInsertForm';
 import Sidebar from '../../../components/dashboard/Sidebar';
 import Footer from '../../../components/dashboard/Footer';
 
 
-function MachinePage() {
+function RawInsert() {
     return (
         <div>
             <Header />
             <Sidebar />
-            <MachineUpdateForm />
+            <RawInsertForm />
             <Footer />
             <a href="#" 
             className="back-to-top d-flex align-items-center justify-content-center">
@@ -21,4 +21,4 @@ function MachinePage() {
     );   
 }
 
-export default MachinePage;
+export default RawInsert;

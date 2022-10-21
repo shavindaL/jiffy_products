@@ -75,6 +75,12 @@ function Sidebar() {
           </li>
 
           <li>
+            <a href="/raw-insert">
+              <i class="bi bi-circle"></i><span>Raw Insert Form</span>
+            </a>
+          </li>
+
+          <li>
             <a href="/order-request">
               <i class="bi bi-circle"></i><span>Order Requests</span>
             </a>
