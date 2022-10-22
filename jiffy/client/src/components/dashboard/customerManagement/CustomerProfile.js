@@ -95,10 +95,9 @@ function CustomerProfile() {
   const handleUpdatePasswordSubmit = async (e) => {
     e.preventDefault()
 
-    const response = await fetch('http://localhost:5000/api/users/reset-password/' + id, {
+    const response = await fetch('http://localhost:5000/api/users/super-reset-password/' + id, {
       method: 'PATCH',
       body: JSON.stringify({
-        currentPassword: currentPassword,
         newPassword: newPassword,
         confirmPassword: confirmPassword
       }),
@@ -318,15 +317,7 @@ function CustomerProfile() {
                         <button type="button" className="btn" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>
                     }
-                    <form onSubmit={handleUpdatePasswordSubmit}>                      
-                      <div className="row mb-3">
-                        <label for="currentPassword" className="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                        <div className="col-md-8 col-lg-9">
-                          <input name="password" type="password" className="form-control" id="currentPassword"
-                            onChange={(e) => setCurrentPassword(e.target.value)} value={currentPassword} />
-                        </div>
-                      </div>
-
+                    <form onSubmit={handleUpdatePasswordSubmit}>                    
                       <div className="row mb-3">
                         <label for="newPassword" className="col-md-4 col-lg-3 col-form-label">New Password</label>
                         <div className="col-md-8 col-lg-9">

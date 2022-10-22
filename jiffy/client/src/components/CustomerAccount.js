@@ -15,7 +15,9 @@ function CustomerAccount() {
     const [currentPassword, setCurrentPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [sFeedback, setSiteFeedback] = useState('')
     const [error, setError] = useState(null)
+    const [errorPosition, setErrorPosition] = useState(null)
 
     const [customerOrders, setCustomerOrders] = useState([]);
 
@@ -109,6 +111,32 @@ function CustomerAccount() {
             window.location.reload();
         }
     }
+
+    const handleFeedbackSubmit = async (e) => {
+        e.preventDefault()
+        console.log("Feedback "+sFeedback)
+        const siteFeedback = { name, sFeedback, email}
+    
+        const response = await fetch('/api/site-feedbacks', {
+          method: 'POST',
+          body: JSON.stringify(siteFeedback),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        const json = await response.json()
+    
+        if (!response.ok) {
+          setError(json.error)
+          setErrorPosition(json.errorPosition)
+          console.log(error)
+        }
+    
+        if (response.ok) {
+          console.log('new feedback added', json)
+          window.location.reload();
+        }
+      }
 
     const handleUpdatePasswordSubmit = async (e) => {
         e.preventDefault()
@@ -435,11 +463,12 @@ function CustomerAccount() {
                                                 <div class="ltn__myaccount-tab-content-inner">
                                                     <p>The following addresses will be used on the checkout page by default.</p>
                                                     <div class="ltn__form-box">
-                                                        <form>
+                                                        <form onSubmit={handleFeedbackSubmit}>
                                                             <div class="row mb-50">
                                                                 <div class="col-md-12">
                                                                     <label>Feedback:</label>
-                                                                    <textarea rows="4" cols="50" name="ltn__email"></textarea>
+                                                                    <textarea rows="4" cols="50" name="ltn__email" 
+                                                                    onChange={(e) => setSiteFeedback(e.target.value)} value={sFeedback}></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="btn-wrapper">

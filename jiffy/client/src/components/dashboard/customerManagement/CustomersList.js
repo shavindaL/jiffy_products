@@ -68,7 +68,7 @@ function Customers() {
       const response = await fetch(`/api/users`)
       const json = await response.json()
       console.log(json)
-      console.log(json[0])
+      //console.log(json[0])
       if (response.ok) {
         setCustomers(json)
       }

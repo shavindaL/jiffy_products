@@ -5,6 +5,7 @@ const express = require('express')
 const userRoutes = require('./routes/userRoutes')
 const orderRoutes = require("./routes/orderRoutes")
 const Payments = require('./routes/Payment')
+const siteFeedbacks = require('./routes/SiteFeedbackRoutes')
 
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -19,9 +20,13 @@ app.use((req, res, next) => {
 })
 app.use(cors())
 
+
+  
+
 // routes
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
+app.use('/api/site-feedbacks', siteFeedbacks)
 app.use('/api/v3/payment', Payments)
 
 // connect to db

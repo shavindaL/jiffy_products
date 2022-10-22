@@ -19,6 +19,7 @@ import DashboardHome from './pages/dashboard/DashboardHome'
 import CustomerAddPage from "./pages/dashboard/customerManagement/CustomerAddPage"
 import CustomerProfilePage from "./pages/dashboard/customerManagement/CustomerProfile";
 import AccountUsagePage from './pages/dashboard/customerManagement/AccountUsagePage';
+import SiteFeedbackPage from './pages/dashboard/customerManagement/SiteFeedbackPage';
 
 function App() {
     return(
@@ -37,12 +38,12 @@ function App() {
                 <Route path="/login-redirect" element={<LoginRedirect />}/>
                 <Route path="/account-redirect" element={<AccountRedirect />}/>
 
-                
                 <Route path="/dashboard" element={<DashboardHome />}/>
                 <Route path="/customers" element={<CustomersPage />}/>
                 <Route path="/customer/:id" element={<CustomerProfilePage />}/>
                 <Route path="/add-customer" element={<CustomerAddPage />}/>
-                <Route path="/account-usage" element={<AccountUsagePage />}/>
+                <Route path="/profile-usage" element={<AccountUsagePage />}/>
+                <Route path="/site-feedbacks" element={<SiteFeedbackPage />}/>
             </Routes>
         </BrowserRouter>  
     );
