@@ -206,22 +206,6 @@ function MachineDetails() {
                         </div>
                       </div>
 
-                      <div className="row mb-3">
-                        <label for="product" className="col-md-4 col-lg-3 col-form-label">Product created:</label>
-                        <div className="col-md-8 col-lg-9">
-                          <input name="product" type="text" className="form-control" id="product"
-                            onChange={(e) => setProduct(e.target.value)} value={product} />
-                        </div>
-                      </div>
-
-                      {/* <div className="row mb-3">
-                        <label for="mFactory" className="col-md-4 col-lg-3 col-form-label">Factory ID this machine belongs:</label>
-                        <div className="col-md-8 col-lg-9">
-                          <input name="mFactory" type="text" className="form-control" id="mFactory"
-                          onChange={(e) => setMFactory(e.target.value)} value={mFactory} />
-                        </div>
-                      </div> */}
-
                       <div className="col-12">
                         <div className="input-group mb-3">
 
@@ -230,9 +214,9 @@ function MachineDetails() {
                           <select className="form-select" onChange={e => setProduct(e.target.value)}>
                             <option value="Pots" selected>Pots</option>
                             <option value="Growbags">Growbags</option>
-                            <option value="Growblocks" selected>Growblocks</option>
+                            <option value="Growblocks">Growblocks</option>
                             <option value="Pallets">Pallets</option>
-                            <option value="Performa" selected>Performa</option>
+                            <option value="Performa">Performa</option>
                             <option value="Substrates">Substrates</option>
 
                           </select>

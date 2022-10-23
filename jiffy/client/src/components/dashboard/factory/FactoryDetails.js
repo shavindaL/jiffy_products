@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import FactoryDeleteForm from './FactoryDeleteForm';
+// import FactoryUpdateForm from './FactoryUpdateForm';
 
 function FactoryDetails() {
   const navigate = useNavigate();
@@ -95,26 +97,6 @@ function FactoryDetails() {
     }
   }
 
-  const handleDeleteSubmit = async (e) => {
-    e.preventDefault()
-
-    const response = await fetch('http://localhost:5000/api/factory/' + id, {
-      method: 'DELETE'
-    })
-    const json = await response.json()
-
-    if (!response.ok) {
-      setError(json.error)
-      console.log(json.error)
-    }
-
-    if (response.ok) {
-      console.log('Factory deleted successfully.', json)
-      navigate("/view-factory");
-    }
-
-  }
-
   return (
     <main id="main" className="main">
 
@@ -145,10 +127,6 @@ function FactoryDetails() {
 
                   <li className="nav-item">
                     <button className="nav-link" data-bs-toggle="tab" data-bs-target="#factory-update">Update</button>
-                  </li>
-
-                  <li className="nav-item">
-                    <button className="nav-link" data-bs-toggle="tab" data-bs-target="#factory-delete">Delete</button>
                   </li>
 
                 </ul>
@@ -192,6 +170,8 @@ function FactoryDetails() {
                       <div className="col-lg-3 col-md-4 label">Factory started date:</div>
                       <div className="col-lg-9 col-md-8">{factory["createdDate"]}</div>
                     </div>
+
+                    <FactoryDeleteForm setError={setError} id={id} />
 
                   </div>
 
@@ -267,22 +247,6 @@ function FactoryDetails() {
                       </div>
                     </form>
                     {/* End Profile Edit Form */}
-
-                  </div>
-
-                  <div className="tab-pane fade pt-3" id="factory-delete">
-
-                    {/* Delete */}
-                    <form onSubmit={handleDeleteSubmit}>
-
-                      <div className="row mb-3">
-                        <label for="fullName" className="col-md-4 col-lg-5 col-form-label">Are you sure you want to delete this factory?</label>
-                        <div className="col-md-8 col-lg-9">
-                          <button type="submit" className="btn btn-primary">Delete Permanently</button>
-                        </div>
-                      </div>
-                    </form>
-                    {/* <!-- End Delete --> */}
 
                   </div>
 

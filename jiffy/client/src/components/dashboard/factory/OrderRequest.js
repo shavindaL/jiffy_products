@@ -49,17 +49,16 @@ function OrderRequest() {
                     <th scope="col">Product Name</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Status</th>
-                    
+                    <th scope="col">Change order status</th>
                   </tr>
                 </thead>
                 <tbody>
-                    {/* {factory && factory.map((factory) => ( */}
                         <tr>
                             <th scope="row">09-06-2022</th>
                             <td>Pots</td>
                             <td>800</td>
                             <td>Completed</td>
-                            {/* <td><Link to ={{pathname:`/factory-details/${factory._id}`}}>View Factory Details</Link></td> */}
+                            <td><button type="button" class="btn btn-success">Set as Completed</button></td>
                         </tr>
 
                         <tr>
@@ -67,7 +66,7 @@ function OrderRequest() {
                             <td>Pallets</td>
                             <td>680</td>
                             <td>Incomplete</td>
-                            {/* <td><Link to ={{pathname:`/factory-details/${factory._id}`}}>View Factory Details</Link></td> */}
+                            <td><button type="button" class="btn btn-success">Set as Completed</button></td>
                         </tr>
 
                         <tr>
@@ -75,7 +74,7 @@ function OrderRequest() {
                             <td>GrowBags</td>
                             <td>750</td>
                             <td>Incomplete</td>
-                            {/* <td><Link to ={{pathname:`/factory-details/${factory._id}`}}>View Factory Details</Link></td> */}
+                            <td><button type="button" class="btn btn-success">Set as Completed</button></td>
                         </tr>
                     
                 </tbody>

@@ -1,4 +1,5 @@
 const MachineStats = require('../models/MachineStats')
+const Machine = require("../models/Machine")
 
 // Create a new MachineStata
 const createMachineStats = async (req, res) => {
@@ -18,6 +19,7 @@ const createMachineStats = async (req, res) => {
 
     try {
         const machineStats = await MachineStats.create({mId, currentDate, product, completedProducts, ranHrs})
+        await Machine.findOneAndUpdate({ mId }, { $inc: {totalProductions: completedProducts, totalRunningHrs: ranHrs} })
         res.status(200).json(machineStats)
     } catch (error) {
         res.status(400).json({ error: error.message })
