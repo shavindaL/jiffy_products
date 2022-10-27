@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 const MachineStatsForm = () => {
   const [factoryFilter, setFactoryFilter] = useState('')
@@ -43,7 +43,7 @@ const MachineStatsForm = () => {
     }
   }
 
-  const fetchMachines = async ({factory}) => {
+  const fetchMachines = async ({ factory }) => {
     const url = factory && factory !== "ALL" ? `/api/machine?factory=${factory}` : '/api/machine'
     const response = await fetch(url)
     const json = await response.json()
@@ -54,7 +54,7 @@ const MachineStatsForm = () => {
   }
 
   const fetchFactories = async () => {
-    const response = await fetch( '/api/factory')
+    const response = await fetch('/api/factory')
     const json = await response.json()
 
     if (response.ok) {
@@ -63,8 +63,8 @@ const MachineStatsForm = () => {
   }
 
   useEffect(() => {
-    if(mId && machines){
-      const currentMachine = machines.find(i => i.mId ===mId)
+    if (mId && machines) {
+      const currentMachine = machines.find(i => i.mId === mId)
       setProduct(currentMachine.product)
     }
   }, [mId])
@@ -75,7 +75,7 @@ const MachineStatsForm = () => {
   }, [])
 
   useEffect(() => {
-    fetchMachines({factory: factoryFilter})
+    fetchMachines({ factory: factoryFilter })
   }, [factoryFilter])
 
   return (
@@ -153,8 +153,8 @@ const MachineStatsForm = () => {
                   <div className="col-12">
                     <label for="product" className="form-label">Product:</label>
 
-                      {machines && product&&  <input type="text" disabled className="form-control" id="product"
-                       value={product} />  }
+                    {machines && product && <input type="text" disabled className="form-control" id="product"
+                      value={product} />}
 
                   </div>
 

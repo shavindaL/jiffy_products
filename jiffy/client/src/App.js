@@ -6,6 +6,8 @@ import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from "./pages/auth/Register";
 import AccountPage from './pages/Account';
 import OrderPage from './pages/OrderPage';
+import AddCustomerPayment from "./pages/dashboard/customerManagement/AddCustomerPayment";
+
 import LoginRedirect from './pages/redirect/LoginRedirect'
 import AccountRedirect from './pages/redirect/AccountRedirect';
 import CustomersPage from "./pages/dashboard/customerManagement/CustomersPage";
@@ -21,6 +23,8 @@ import MachineDetailsPage from "./pages/dashboard/machine/MachineDetails";
 import MachineStatsPage from "./pages/dashboard/machine/MachineStatsPage";
 import OrderRequestPage from "./pages/dashboard/factory/OrderRequestPage";
 import RawInsertPage from "./pages/dashboard/factory/RawInsertPage";
+import AccountUsagePage from './pages/dashboard/customerManagement/AccountUsagePage';
+import SiteFeedbackPage from './pages/dashboard/customerManagement/SiteFeedbackPage';
 
 function App() {
     return(
@@ -33,6 +37,9 @@ function App() {
                 <Route path="/signup" element={!localStorage.getItem('user')? <RegisterPage />:<Navigate to='/account-redirect'/>}/>
                 <Route path="/account" element={localStorage.getItem('user')? <AccountPage />:<Navigate to='/login-redirect'/>}/>
                 <Route path="/my-order/:id" element={localStorage.getItem('user')? <OrderPage />:<Navigate to='/login-redirect'/>}/>
+
+                <Route path="/AddCustomerPayment" element={localStorage.getItem('user')?<AddCustomerPayment />:<Navigate to='/login-redirect'/>}/>
+
                 <Route path="/login-redirect" element={<LoginRedirect />}/>
                 <Route path="/account-redirect" element={<AccountRedirect />}/>
                 <Route path="/dashboard" element={<DashboardHome />}/>
@@ -49,6 +56,8 @@ function App() {
                 <Route path="/order-request" element={<OrderRequestPage />}/>
                 <Route path="/raw-insert" element={<RawInsertPage />}/>
 
+                <Route path="/profile-usage" element={<AccountUsagePage />}/>
+                <Route path="/site-feedbacks" element={<SiteFeedbackPage />}/>
             </Routes>
         </BrowserRouter>  
     );

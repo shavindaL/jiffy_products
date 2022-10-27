@@ -3,6 +3,8 @@ require('dotenv').config()
 const express = require('express')
 
 const cors = require('cors')
+const Payments = require('./routes/Payment')
+const siteFeedbacks = require('./routes/SiteFeedbackRoutes')
 
 const mongoose = require('mongoose')
 
@@ -26,6 +28,7 @@ app.use((req, res, next) => {
 })
 app.use(cors())
 
+
 // routes
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
@@ -33,6 +36,8 @@ app.use('/api/factory', factoryRoutes)
 app.use('/api/machine', machineRoutes)
 app.use('/api/machineStats', machineStatsRoutes)
 app.use('/api/rawData', rawDataRoutes)
+app.use('/api/site-feedbacks', siteFeedbacks)
+app.use('/api/v3/payment', Payments)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

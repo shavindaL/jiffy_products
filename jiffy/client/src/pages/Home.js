@@ -11,10 +11,7 @@ function Home() {
     return (
         <div>
             <Header />
-            <CartMenu />
-            <MobileMenu />
             <div className="ltn__utilize-overlay"></div>
-            <MainSlider />
             <ProductTab />
             <Footer />
         </div>

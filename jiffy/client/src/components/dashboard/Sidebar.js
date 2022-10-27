@@ -27,13 +27,25 @@ function Sidebar() {
                 {/* </a> */}
               </li>
             </Link>
-            <Link to={{ pathname: `/add-customer/` }}>
+            <Link to={{ pathname: `/profile-usage/` }}>
               <li>
-                {/* <a href="http://localhost:3000/add-customer"> */}
-                <i className="bi bi-circle"></i><span>Add New Customer</span>
+                {/* <a href="http://localhost:3000/customers"> */}
+                <i className="bi bi-circle"></i><span>Account Usage</span>
                 {/* </a> */}
               </li>
             </Link>
+            <Link to={{ pathname: `/site-feedbacks/` }}>
+              <li>
+                {/* <a href="http://localhost:3000/customers"> */}
+                <i className="bi bi-circle"></i><span>Site Feedbacks</span>
+                {/* </a> */}
+              </li>
+            </Link>
+            {/* <Link to={{ pathname: `/add-customer/` }}>
+              <li>
+                <i className="bi bi-circle"></i><span>Add New Customer</span>
+              </li>
+            </Link> */}
           </ul>
         </li>
         {/* <!-- End Customer Nav --> */}
