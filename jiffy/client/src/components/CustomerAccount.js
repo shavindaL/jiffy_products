@@ -1,32 +1,23 @@
 import { useEffect, useState } from 'react'
-import { useLogout } from '../hooks/useLogout'
-import { useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAuthContext } from '../hooks/useAuthContext'
 import axios from 'axios'
 
 function CustomerAccount() {
-    const navigate = useNavigate()
-    const { logout } = useLogout()
-
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
-    const [currentPassword, setCurrentPassword] = useState('')
-    const [newPassword, setNewPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
-    const [sFeedback, setSiteFeedback] = useState('')
     const [error, setError] = useState(null)
-    const [errorPosition, setErrorPosition] = useState(null)
 
     const [customerOrders, setCustomerOrders] = useState([]);
 
     useEffect(() => {
-        axios.get(`/api/orders/${user.id}`)
+        axios.get('/api/orders/JHGF48525')
             .then((getData) => {
                 setCustomerOrders(getData.data);
             })
-    }, [])
+    },[])
 
     const [user, setUser] = useState(() => {
         // getting stored value
@@ -111,168 +102,9 @@ function CustomerAccount() {
             window.location.reload();
         }
     }
-
-    const handleFeedbackSubmit = async (e) => {
-        e.preventDefault()
-        console.log("Feedback "+sFeedback)
-        const siteFeedback = { name, sFeedback, email}
-    
-        const response = await fetch('/api/site-feedbacks', {
-          method: 'POST',
-          body: JSON.stringify(siteFeedback),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        const json = await response.json()
-    
-        if (!response.ok) {
-          setError(json.error)
-          setErrorPosition(json.errorPosition)
-          console.log(error)
-        }
-    
-        if (response.ok) {
-          console.log('new feedback added', json)
-          window.location.reload();
-        }
-      }
-
-    const handleUpdatePasswordSubmit = async (e) => {
-        e.preventDefault()
-
-        const response = await fetch('http://localhost:5000/api/users/reset-password/' + user.id, {
-            method: 'PATCH',
-            body: JSON.stringify({
-                currentPassword: currentPassword,
-                newPassword: newPassword,
-                confirmPassword: confirmPassword
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-        const json = await response.json()
-
-        if (!response.ok) {
-            setError(json.error)
-            console.log(json.error)
-        }
-
-        if (response.ok) {
-            console.log('Password updated', json)
-            window.location.reload();
-        }
-    }
-
-    const handleLogout = () => {
-        logout()
-        navigate("/login")
-    }
-
-    const [number, setNumber] = useState('');
-    const [Hname, setHName] = useState('');
-    const [expiry, setExpiry] = useState('');
-    const [cvc, setCvc] = useState('');
-    const [apiData, setApiData] = useState([]);
-
-    useEffect(() => {
-        axios.get(`http://localhost:5000/api/v3/payment/getPayment/${user.id}`)
-            .then((getData) => {
-                setApiData(getData.data);
-                setNumber(getData.data.Card_Number)
-                setHName(getData.data.Card_holder_name)
-                setExpiry(getData.data.Card_expiry_date)
-                setCvc(getData.data.Card_CVC)
-
-            })
-    }, [])
-
-    const [isData, setData] = useState(false);
-
-    function checkdata() {
-        if (apiData == []) {
-            const chk = true;
-            return chk;
-        } else {
-            const chk = false;
-            return chk;
-        }
-
-    }
-
-    const onDelete = (e) => {
-        e.preventDefault();
+    //var customer = null
 
 
-        axios.delete(`http://localhost:5000/api/v3/payment/removePayment/${user.id}`)
-            .then(() => {
-            })
-        window.location = "/account"
-
-    }
-
-    const [cardNumberERR, setCardNumberERR] = useState({});
-    const [cvcNumberERR, setCvcNumberERR] = useState({});
-    const [expireDateERR, setExpireERR] = useState({});
-
-    const formValidation = () => {
-        const cardNumberERR = {};
-        const cvcNumberERR = {};
-        const userName = {};
-        let isValid = true;
-
-        if (cvc.trim().length < 3) {
-            cvcNumberERR.cvcShort = "Invalid CVC Number!";
-            isValid = false;
-        }
-        if (cvc.trim().length > 3) {
-            cvcNumberERR.cvcShort = "Invalid CVC Number!";
-            isValid = false;
-        }
-
-        if (number.toString().length < 16) {
-            cardNumberERR.numberShort = "Invalid Card Number!";
-            isValid = false;
-        }
-
-        if (isNaN(cvc)) {
-            cvcNumberERR.cvcShort = "Invalid CVC Number!";
-            isValid = false;
-        }
-
-
-        if (isNaN(number)) {
-            cardNumberERR.numberShort = "Invalid Card Number!";
-            isValid = false;
-        }
-        const ex1 = String(expiry).slice(0, 2)
-        const month = Number(ex1)
-
-        if (month > 12) {
-            expireDateERR.expireShort = "Invalid Expire Date!"
-            isValid = false;
-        }
-
-
-        setCvcNumberERR(cvcNumberERR);
-        setCardNumberERR(cardNumberERR);
-        setExpireERR(expireDateERR);
-        return isValid;
-    }
-
-    const sendDataToAPI = (e) => {
-        e.preventDefault();
-        const isValid = formValidation();
-        if (isValid) {
-            axios.put(`http://localhost:5000/api/v3/payment/updatePayment/${user.id}`,
-                {
-                    number, Hname, expiry, cvc
-                }
-            )
-            window.location = "/account"
-        }
-    }
 
     return (
         <div class="liton__wishlist-area pb-70">
@@ -287,11 +119,10 @@ function CustomerAccount() {
                                         <div class="ltn__tab-menu-list mb-50">
                                             <div class="nav">
                                                 <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Dashboard </a>
-                                                <a data-toggle="tab" href="#liton_tab_1_2">Orders </a>
-                                                <a data-toggle="tab" href="#liton_tab_1_3">Payment Method </a>
-                                                <a data-toggle="tab" href="#liton_tab_1_4">Account Details </a>
-                                                <a data-toggle="tab" href="#liton_tab_1_5">Feedback </a>
-                                                <a onClick={handleLogout}>Logout</a>
+                                                <a data-toggle="tab" href="#liton_tab_1_3">Orders </a>
+                                                <a data-toggle="tab" href="#liton_tab_1_4">Payment Method </a>
+                                                <a data-toggle="tab" href="#liton_tab_1_5">Account Details </a>
+                                                <a href="login.html">Logout</a>
                                             </div>
                                         </div>
                                     </div>
@@ -303,7 +134,7 @@ function CustomerAccount() {
                                                     <p>From your account dashboard you can view your <span>recent orders</span>, manage your <span>shipping and billing addresses</span>, and <span>edit your account details</span>.</p>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="liton_tab_1_2">
+                                            <div class="tab-pane fade" id="liton_tab_1_3">
                                                 <div class="ltn__myaccount-tab-content-inner">
                                                     <div class="table-responsive">
                                                         <table class="table">
@@ -311,7 +142,8 @@ function CustomerAccount() {
                                                                 <tr>
                                                                     <th>Order ID</th>
                                                                     <th>Date</th>
-                                                                    <th>Status</th>
+                                                                    <th>Price</th>
+                                                                    <th>Delivery status</th>
                                                                     <th></th>
                                                                 </tr>
                                                             </thead>
@@ -319,8 +151,9 @@ function CustomerAccount() {
                                                                 {customerOrders.map((order) => (
                                                                     <tr key={order._id}>
                                                                         <td>{order._id}</td>
-                                                                        <td>{order.Date}</td>
-                                                                        <td>{order.Status}</td>
+                                                                        <td>{order.date}</td>
+                                                                        <td>{order.price}</td>
+                                                                        <td>{order.deliveryStatus}</td>
                                                                         <td><Link to={{ pathname: `/my-order/${order._id}` }}><i class="far fa-arrow-to-bottom mr-1"></i> View Order</Link></td>
                                                                     </tr>
                                                                 ))}
@@ -329,87 +162,36 @@ function CustomerAccount() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="liton_tab_1_3">
+                                            <div class="tab-pane fade" id="liton_tab_1_4">
                                                 <div class="ltn__myaccount-tab-content-inner">
+                                                    <p>The following addresses will be used on the checkout page by default.</p>
                                                     <div class="row">
-                                                        {checkdata() ? <div class="col-md-6 col-10 learts-mb-30"  >
-                                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                                <h4 class="alert-heading">Payments details Requset</h4>
-                                                                <p style={{ marginBottom: "20%" }}>Please enter the payment details.It will be used on the checkout page by default</p>
-                                                                <hr />
-                                                                <p class="mb-0">Press below "Add card details" button to add payment details</p>
-                                                                <br />
-                                                                <Link reloadDocument to='/AddCustomerPayment'>
-                                                                    <button type="button" class="btn btn-danger rounded-pill">Add card details</button>
-                                                                </Link>
-                                                            </div> </div> : <div>
-
-                                                            <form className="row g-3">
-                                                                <div className="col-md-12">
-                                                                    <div className="form-floating">
-                                                                        <h5>card Number</h5>
-                                                                        <input type="text" className="form-control" defaultValue={number} maxlength="16" onChange={(e) => setNumber(e.target.value)} name="number" placeholder="Card Number" />
-                                                                        {Object.keys(cardNumberERR).map((key) => {
-                                                                            return <div style={{ color: "red" }}>{cardNumberERR[key]}</div>
-                                                                        })}
-                                                                    </div>
-                                                                </div>
-
-                                                                <div className="col-md-12">
-                                                                    <div className="form-floating">
-                                                                        <h5>Card holder's name</h5>
-                                                                        <input type="text" className="form-control" defaultValue={Hname} maxlength="24" onChange={(e) => setHName(e.target.value)} name="Hname" placeholder="Card holder's name" />
-                                                                    </div>
-                                                                </div>
-
-
-                                                                <div className="col-md-6">
-                                                                    <h5>Expire date</h5>
-                                                                    <div className="form-floating">
-                                                                        <input type="text" className="form-control" defaultValue={expiry} onChange={(e) => setExpiry(e.target.value)} name="expiredate" placeholder="Expire date" />
-                                                                    </div>
-                                                                </div>
-                                                                {Object.keys(expireDateERR).map((key) => {
-                                                                    return <div style={{ color: "red" }}>{expireDateERR[key]}</div>
-                                                                })}
-
-
-                                                                <div className="col-md-2">
-                                                                    <div className="form-floating">
-                                                                        <h5>CVC </h5>
-                                                                        <input type="text" className="form-control" defaultValue={cvc} onChange={(e) => setCvc(e.target.value)} name="CVC" placeholder="Zip" />
-                                                                        {Object.keys(cvcNumberERR).map((key) => {
-                                                                            return <div style={{ color: "red" }}>{cvcNumberERR[key]}</div>
-                                                                        })}
-
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-md-2">
-                                                                </div>
-                                                                <div className="col-md-2">
-                                                                </div>
-
-                                                                <div className="text-center">
-                                                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" onClick={(e) => sendDataToAPI(e)} type="submit">Update</button>
-                                                                </div>
-                                                                <div className="col-md-2">
-                                                                </div>
-                                                                <div className="text-center">
-                                                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" onClick={(e) => onDelete(e)} type="submit">Remove</button>
-                                                                </div>
-                                                            </form>
+                                                        <div class="col-md-6 col-12 learts-mb-30">
+                                                            <h4>Billing Address <small><a href="#">edit</a></small></h4>
+                                                            <address>
+                                                                <p><strong>Alex Tuntuni</strong></p>
+                                                                <p>1355 Market St, Suite 900 <br />
+                                                                    San Francisco, CA 94103</p>
+                                                                <p>Mobile: (123) 456-7890</p>
+                                                            </address>
                                                         </div>
-                                                        }
+                                                        <div class="col-md-6 col-12 learts-mb-30">
+                                                            <h4>Shipping Address <small><a href="#">edit</a></small></h4>
+                                                            <address>
+                                                                <p><strong>Alex Tuntuni</strong></p>
+                                                                <p>1355 Market St, Suite 900 <br />
+                                                                    San Francisco, CA 94103</p>
+                                                                <p>Mobile: (123) 456-7890</p>
+                                                            </address>
+                                                        </div>
                                                     </div>
-
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="liton_tab_1_4">
+                                            <div class="tab-pane fade" id="liton_tab_1_5">
                                                 <div class="ltn__myaccount-tab-content-inner">
                                                     <p>The following addresses will be used on the checkout page by default.</p>
                                                     <div class="ltn__form-box">
                                                         <form onSubmit={handleUpdateSubmit}>
-                                                        {error && <p style={{ color: 'red' }}>*{error}</p>}
                                                             <div class="row mb-50">
                                                                 <div class="col-md-6">
                                                                     <label>Name:</label>
@@ -432,47 +214,21 @@ function CustomerAccount() {
                                                                         onChange={(e) => setAddress(e.target.value)} value={address} />
                                                                 </div>
                                                             </div>
+                                                            {/* <fieldset>
+                                                                <legend>Password change</legend>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <label>Current password (leave blank to leave unchanged):</label>
+                                                                        <input type="password" name="ltn__name" />
+                                                                        <label>New password (leave blank to leave unchanged):</label>
+                                                                        <input type="password" name="ltn__lastname" />
+                                                                        <label>Confirm new password:</label>
+                                                                        <input type="password" name="ltn__lastname" />
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset> */}
                                                             <div class="btn-wrapper">
                                                                 <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Save Changes</button>
-                                                            </div>
-                                                        </form>
-                                                        <br /><br /><br /><br />
-                                                        <form onSubmit={handleUpdatePasswordSubmit}>
-                                                        {error && <p style={{ color: 'red' }}>*{error}</p>}
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <label>Current password (leave blank to leave unchanged):</label>
-                                                                    <input type="password" name="ltn__name" 
-                                                                    onChange={(e) => setCurrentPassword(e.target.value)} value={currentPassword}/>
-                                                                    <label>New password (leave blank to leave unchanged):</label>
-                                                                    <input type="password" name="ltn__lastname" 
-                                                                    onChange={(e) => setNewPassword(e.target.value)} value={newPassword}/>
-                                                                    <label>Confirm new password:</label>
-                                                                    <input type="password" name="ltn__lastname"
-                                                                    onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword}/>
-                                                                </div>
-                                                            </div>
-                                                            <div class="btn-wrapper">
-                                                                <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Update Password</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="liton_tab_1_5">
-                                                <div class="ltn__myaccount-tab-content-inner">
-                                                    <p>The following addresses will be used on the checkout page by default.</p>
-                                                    <div class="ltn__form-box">
-                                                        <form onSubmit={handleFeedbackSubmit}>
-                                                            <div class="row mb-50">
-                                                                <div class="col-md-12">
-                                                                    <label>Feedback:</label>
-                                                                    <textarea rows="4" cols="50" name="ltn__email" 
-                                                                    onChange={(e) => setSiteFeedback(e.target.value)} value={sFeedback}></textarea>
-                                                                </div>
-                                                            </div>
-                                                            <div class="btn-wrapper">
-                                                                <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Send</button>
                                                             </div>
                                                         </form>
                                                     </div>

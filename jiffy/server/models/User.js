@@ -1,8 +1,6 @@
 const mongoose = require('mongoose') 
 const bcrypt = require('bcrypt')
 const validator = require('validator')
-var moment = require('moment')
-var sendEmail = require('../utils/sendEmail')
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -31,22 +29,17 @@ const UserSchema = new mongoose.Schema({
 })
 
 // static signup method
-UserSchema.statics.signup = async function (name, email, password, confirmPassword) {
+UserSchema.statics.signup = async function (name, email, password) {
 
   // valdation
-  console.log(confirmPassword)
-  if (!name || !email || !password || !confirmPassword) {
+  if (!name || !email || !password) {
     throw Error('All fields must be filled')
   }
   if (!validator.isEmail(email)){
     throw Error('Email is not valid')
   }
-  
-  if (!(password===confirmPassword)){
-    throw Error('Password and confirm password mismatch')
-  }
   if (!validator.isStrongPassword(password)){
-    throw Error('Password not strong enough. Must contains uppercase, lowercase, numbers and more than eight characters')
+    throw Error('Password not strong enought')
   }
 
   const exists = await this.findOne({email})
@@ -59,8 +52,6 @@ UserSchema.statics.signup = async function (name, email, password, confirmPasswo
   const hash = await bcrypt.hash(password, salt)
 
   const user = await this.create({name, email, password:hash})
-
-  sendEmail(email, 'Jiffy Account Created', 'Your account has been created successfully. Thanks for using our services')
 
   return user
 }
@@ -83,10 +74,6 @@ UserSchema.statics.login = async function (email, password) {
   if(!match){
     throw Error('Incorrect email or password')
   }
-
-  await this.findOneAndUpdate({ email: email }, {
-    lastLogin: moment(new Date())
-  })
 
   return user
 

@@ -9,8 +9,11 @@ node_modules
 /client/public/assets/media
 /client/public/dashboard-assets/img
 /client/public/dashboard-assets/vendor
-/client/package-lock.json
 
+
+/client/package.json
+/client/package-lock.json
+/server/package.json
 /server/package-lock.json
 
 # testing

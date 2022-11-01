@@ -16,7 +16,7 @@ function Footer() {
                                                 <i class="icon-placeholder"></i>
                                             </div>
                                             <div class="footer-address-info">
-                                                <p>Jiffy, Sri Lanka</p>
+                                                <p>Brooklyn, New York, United States</p>
                                             </div>
                                         </li>
                                         <li>
@@ -24,7 +24,7 @@ function Footer() {
                                                 <i class="icon-call"></i>
                                             </div>
                                             <div class="footer-address-info">
-                                                <p><a href="tel:+0123-456789">+94764101928</a></p>
+                                                <p><a href="tel:+0123-456789">+0123-456789</a></p>
                                             </div>
                                         </li>
                                         <li>
@@ -32,7 +32,7 @@ function Footer() {
                                                 <i class="icon-mail"></i>
                                             </div>
                                             <div class="footer-address-info">
-                                                <p><a href="mailto:example@example.com">info@jiffy.com</a></p>
+                                                <p><a href="mailto:example@example.com">example@example.com</a></p>
                                             </div>
                                         </li>
                                     </ul>

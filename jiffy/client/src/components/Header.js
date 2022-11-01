@@ -20,7 +20,8 @@ function Header() {
                         <div class="col">
                             <div class="site-logo-wrap">
                                 <div class="site-logo">
-                                    </div>
+                                    <a href="index.html"><img src={process.env.PUBLIC_URL + "/assets/img/logo-2.png"} alt="Logo" /></a>
+                                </div>
                             </div>
                         </div>
                         <div class="col header-menu-column menu-color-white">

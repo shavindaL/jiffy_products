@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 function CustomerProfile() {
   const navigate = useNavigate()
@@ -10,9 +8,6 @@ function CustomerProfile() {
   const [email, setEmail] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
-  const [currentPassword, setCurrentPassword] = useState('')
-  const [newPassword, setNewPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState(null)
 
   const { id } = useParams()
@@ -50,10 +45,10 @@ function CustomerProfile() {
             __v: 0,
             _id: `${json["_id"]}`
           })
-        setName(json["name"])
-        setEmail(json["email"])
-        setAddress(json["address"])
-        setPhone(json["phone"])
+          setName(json["name"])
+          setEmail(json["email"])
+          setAddress(json["address"])
+          setPhone(json["phone"])
       } else {
         console.log("not ok")
       }
@@ -92,32 +87,6 @@ function CustomerProfile() {
     }
   }
 
-  const handleUpdatePasswordSubmit = async (e) => {
-    e.preventDefault()
-
-    const response = await fetch('http://localhost:5000/api/users/super-reset-password/' + id, {
-      method: 'PATCH',
-      body: JSON.stringify({
-        newPassword: newPassword,
-        confirmPassword: confirmPassword
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-    const json = await response.json()
-
-    if (!response.ok) {
-      setError(json.error)
-      console.log(json.error)
-    }
-
-    if (response.ok) {
-      console.log('Password updated', json)
-      window.location.reload();
-    }
-  }
-
   const handleDeleteSubmit = async (e) => {
     e.preventDefault()
 
@@ -137,24 +106,6 @@ function CustomerProfile() {
     }
   }
 
-  const deleteSubmit = () => {
-
-    confirmAlert({
-      title: 'Confirm to delete',
-      message: 'Are you sure to do this.',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: () => handleDeleteSubmit()
-        },
-        {
-          label: 'No',
-          //onClick: () => alert('Click No')
-        }
-      ]
-    });
-  }
-
   //console.log("Customer bn "+customer)
 
   return (
@@ -164,8 +115,8 @@ function CustomerProfile() {
         <h1>Profile</h1>
         <nav>
           <ol className="breadcrumb">
-            <li className="breadcrumb-item"><Link to={{ pathname: `/dashboard/` }}>Home</Link></li>
-            <li className="breadcrumb-item"><Link to={{ pathname: `/customers/` }}>Customers</Link></li>
+            <li className="breadcrumb-item"><Link to ={{pathname:`/dashboard/`}}>Home</Link></li>
+            <li className="breadcrumb-item"><Link to ={{pathname:`/customers/`}}>Customers</Link></li>
             <li className="breadcrumb-item active">Profile</li>
           </ol>
         </nav>
@@ -190,8 +141,8 @@ function CustomerProfile() {
                   </li>
 
                   <li className="nav-item">
-                    <button className="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
-                  </li>
+                      <button className="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Settings</button>
+                    </li>
 
                   <li className="nav-item">
                     <button className="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
@@ -228,7 +179,17 @@ function CustomerProfile() {
                   <div className="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                     {/* <!-- Profile Edit Form --> */}
-                    <form onSubmit={handleUpdateSubmit}>                      
+                    <form onSubmit={handleUpdateSubmit}>
+                      {/* <div className="row mb-3">
+                          <label for="profileImage" className="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                          <div className="col-md-8 col-lg-9">
+                            <img src="assets/img/profile-img.jpg" alt="Profile" />
+                            <div className="pt-2">
+                              <a href="#" className="btn btn-primary btn-sm" title="Upload new profile image"><i className="bi bi-upload"></i></a>
+                              <a href="#" className="btn btn-danger btn-sm" title="Remove my profile image"><i className="bi bi-trash"></i></a>
+                            </div>
+                          </div>
+                        </div> */}
                       {error &&
                         <div className="alert alert-danger alert-dismissible fade show" role="alert">
                           {error}
@@ -240,31 +201,31 @@ function CustomerProfile() {
                         <label for="fullName" className="col-md-4 col-lg-3 col-form-label">Full Name</label>
                         <div className="col-md-8 col-lg-9">
                           <input name="fullName" type="text" className="form-control" id="fullName"
-                            onChange={(e) => setName(e.target.value)} value={name} />
+                          onChange={(e) => setName(e.target.value)} value={name} />
                         </div>
                       </div>
 
                       <div className="row mb-3">
                         <label for="Address" className="col-md-4 col-lg-3 col-form-label">Address</label>
                         <div className="col-md-8 col-lg-9">
-                          <input name="address" type="text" className="form-control" id="Address"
-                            onChange={(e) => setAddress(e.target.value)} value={address} />
+                          <input name="address" type="text" className="form-control" id="Address" 
+                          onChange={(e) => setAddress(e.target.value)} value={address} />
                         </div>
                       </div>
 
                       <div className="row mb-3">
                         <label for="Phone" className="col-md-4 col-lg-3 col-form-label">Phone</label>
                         <div className="col-md-8 col-lg-9">
-                          <input name="phone" type="text" className="form-control" id="Phone"
-                            onChange={(e) => setPhone(e.target.value)} value={phone} />
+                          <input name="phone" type="text" className="form-control" id="Phone" 
+                          onChange={(e) => setPhone(e.target.value)} value={phone} />
                         </div>
                       </div>
 
                       <div className="row mb-3">
                         <label for="Email" className="col-md-4 col-lg-3 col-form-label">Email</label>
                         <div className="col-md-8 col-lg-9">
-                          <input name="email" type="email" className="form-control" id="Email"
-                            onChange={(e) => setEmail(e.target.value)} value={email} />
+                          <input name="email" type="email" className="form-control" id="Email" 
+                           onChange={(e) => setEmail(e.target.value)} value={email} />
                         </div>
                       </div>
 
@@ -279,58 +240,41 @@ function CustomerProfile() {
                   <div className="tab-pane fade pt-3" id="profile-settings">
 
                     {/* <!-- Settings Form --> */}
+                    <form onSubmit={handleDeleteSubmit}>
 
-
-                    <div className="row mb-3">
-                      <label for="fullName" className="col-md-4 col-lg-3 col-form-label">Delete Account</label>
-                      <div className="col-md-8 col-lg-9">
-                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">Delete Now</button>
-                      </div>
-                      <div class="modal fade" id="verticalycentered" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title">Vertically Centered</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary" onClick={handleDeleteSubmit} data-bs-dismiss="modal">Delete</button>
-                            </div>
+                        <div className="row mb-3">
+                          <label for="fullName" className="col-md-4 col-lg-3 col-form-label">Delete Account</label>
+                          <div className="col-md-8 col-lg-9">
+                          <button type="submit" className="btn btn-primary">Delete Now</button>
                           </div>
                         </div>
-                      </div>
-                    </div>
-
+                      </form>
                     {/* <!-- End settings Form --> */}
 
                   </div>
 
                   <div className="tab-pane fade pt-3" id="profile-change-password">
                     {/* <!-- Change Password Form --> */}
-                    {error &&
-                      <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                        {error}
-                        <button type="button" className="btn" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <form>
+
+                      <div className="row mb-3">
+                        <label for="currentPassword" className="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                        <div className="col-md-8 col-lg-9">
+                          <input name="password" type="password" className="form-control" id="currentPassword" />
+                        </div>
                       </div>
-                    }
-                    <form onSubmit={handleUpdatePasswordSubmit}>                    
+
                       <div className="row mb-3">
                         <label for="newPassword" className="col-md-4 col-lg-3 col-form-label">New Password</label>
                         <div className="col-md-8 col-lg-9">
-                          <input name="newpassword" type="password" className="form-control" id="newPassword"
-                            onChange={(e) => setNewPassword(e.target.value)} value={newPassword} />
+                          <input name="newpassword" type="password" className="form-control" id="newPassword" />
                         </div>
                       </div>
 
                       <div className="row mb-3">
                         <label for="renewPassword" className="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
                         <div className="col-md-8 col-lg-9">
-                          <input name="renewpassword" type="password" className="form-control" id="renewPassword"
-                            onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} />
+                          <input name="renewpassword" type="password" className="form-control" id="renewPassword" />
                         </div>
                       </div>
 

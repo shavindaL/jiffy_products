@@ -2,32 +2,37 @@ require('dotenv').config()
 
 const express = require('express')
 
-const userRoutes = require('./routes/userRoutes')
-const orderRoutes = require("./routes/orderRoutes")
-const Payments = require('./routes/Payment')
-const siteFeedbacks = require('./routes/SiteFeedbackRoutes')
+const cors = require('cors')
 
 const mongoose = require('mongoose')
-const cors = require('cors')
+
 // express app
 const app = express()
 
+const userRoutes = require('./routes/userRoutes')
+const orderRoutes = require("./routes/orderRoutes")
+const factoryRoutes = require('./routes/factoryRoutes')
+const machineRoutes = require('./routes/machineRoutes')
+const machineStatsRoutes = require('./routes/machineStatsRoutes')
+const rawDataRoutes = require('./routes/rawDataRoutes')
+
 // middleware
 app.use(express.json())
+app.use(cors())
+
 app.use((req, res, next) => {
   console.log(req.path, req.method)
   next()
 })
 app.use(cors())
 
-
-  
-
 // routes
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
-app.use('/api/site-feedbacks', siteFeedbacks)
-app.use('/api/v3/payment', Payments)
+app.use('/api/factory', factoryRoutes)
+app.use('/api/machine', machineRoutes)
+app.use('/api/machineStats', machineStatsRoutes)
+app.use('/api/rawData', rawDataRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)

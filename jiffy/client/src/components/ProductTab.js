@@ -11,11 +11,11 @@ function ProoductTab() {
                     </div>
                     <div className="ltn__tab-menu ltn__tab-menu-2 ltn__tab-menu-top-right-- text-uppercase text-center">
                         <div className="nav">
-                            <a className="active show" data-toggle="tab" href="#liton_tab_3_1">Product Group 1</a>
-                            <a data-toggle="tab" href="#liton_tab_3_2" className="">Product Item 2</a>
-                            <a data-toggle="tab" href="#liton_tab_3_3" className="">Product Item 3</a>
-                            <a data-toggle="tab" href="#liton_tab_3_4" className="">Product Item 4</a>
-                            <a data-toggle="tab" href="#liton_tab_3_5" className="">Product Item 5</a>
+                            <a className="active show" data-toggle="tab" href="#liton_tab_3_1">Food & Drinks</a>
+                            <a data-toggle="tab" href="#liton_tab_3_2" className="">Vegetables</a>
+                            <a data-toggle="tab" href="#liton_tab_3_3" className="">Dried Foods</a>
+                            <a data-toggle="tab" href="#liton_tab_3_4" className="">Bread & Cake</a>
+                            <a data-toggle="tab" href="#liton_tab_3_5" className="">Fish & Meat</a>
                         </div>
                     </div>
                     <div className="tab-content">

@@ -17,7 +17,35 @@ function Header() {
                     <div className="col-md-5">
                         <div className="top-bar-right text-right">
                             <div className="ltn__top-bar-menu">
-
+                                <ul>
+                                    <li>                                    
+                                        <div className="ltn__drop-menu ltn__currency-menu ltn__language-menu">
+                                            <ul>
+                                                <li><a href="#" className="dropdown-toggle"><span className="active-currency">English</span></a>
+                                                    <ul>
+                                                        <li><a href="#">Arabic</a></li>
+                                                        <li><a href="#">Bengali</a></li>
+                                                        <li><a href="#">Chinese</a></li>
+                                                        <li><a href="#">English</a></li>
+                                                        <li><a href="#">French</a></li>
+                                                        <li><a href="#">Hindi</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div className="ltn__social-media">
+                                            <ul>
+                                                <li><a href="#" title="Facebook"><i className="fab fa-facebook-f"></i></a></li>
+                                                <li><a href="#" title="Twitter"><i className="fab fa-twitter"></i></a></li>
+                                                
+                                                <li><a href="#" title="Instagram"><i className="fab fa-instagram"></i></a></li>
+                                                <li><a href="#" title="Dribbble"><i className="fab fa-dribbble"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -31,7 +59,8 @@ function Header() {
                     <div className="col">
                         <div className="site-logo-wrap">
                             <div className="site-logo">
-                                </div>
+                                <a href="index.html"><img src={process.env.PUBLIC_URL+"/assets/img/logo.png"} alt="Logo"/></a>
+                            </div>
                         </div>
                     </div>
                     <div className="col header-menu-column menu-color-white---">
@@ -39,14 +68,14 @@ function Header() {
                             <nav>
                                 <div className="ltn__main-menu">
                                     <ul>
-                                        <li><a href="#">Home</a>
+                                        <li className="menu-icon"><a href="#">Home</a>
                                             <ul>
                                                 <li>
                                                     <a href="index.html">Home Style 01</a>                
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">About</a>
+                                        <li className="menu-icon"><a href="#">About</a>
                                             <ul>
                                                 <li><a href="about.html">About</a></li>
                                                 <li><a href="service.html">Services</a></li>
@@ -60,7 +89,7 @@ function Header() {
                                                 <li><a href="locations.html">Google Map Locations</a></li>
                                             </ul>
                                         </li>
-                                        <li ><a href="#">Shop</a>
+                                        <li className="menu-icon"><a href="#">Shop</a>
                                             <ul>
                                                 <li><a href="shop.html">Shop</a></li>
                                                 <li><a href="shop-grid.html">Shop Grid</a></li>
@@ -80,9 +109,55 @@ function Header() {
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </li>                                
+                                        </li>
+                                        <li className="menu-icon"><a href="#">News</a>
+                                            <ul>
+                                                <li><a href="blog.html">News</a></li>
+                                                <li><a href="blog-grid.html">News Grid</a></li>
+                                                <li><a href="blog-left-sidebar.html">News Left sidebar</a></li>
+                                                <li><a href="blog-right-sidebar.html">News Right sidebar</a></li>
+                                                <li><a href="blog-details.html">News details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li className="menu-icon"><a href="#">Pages</a>
+                                            <ul className="mega-menu">
+                                                <li><a href="#">Inner Pages</a>
+                                                    <ul>
+                                                        <li><a href="portfolio.html">Gallery</a></li>
+                                                        <li><a href="portfolio-2.html">Gallery - 02</a></li>
+                                                        <li><a href="portfolio-details.html">Gallery Details</a></li>
+                                                        <li><a href="team.html">Team</a></li>
+                                                        <li><a href="team-details.html">Team Details</a></li>
+                                                        <li><a href="faq.html">FAQ</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#">Inner Pages</a>
+                                                    <ul>
+                                                        <li><a href="history.html">History</a></li>
+                                                        <li><a href="contact.html">Appointment</a></li>
+                                                        <li><a href="locations.html">Google Map Locations</a></li>
+                                                        <li><a href="404.html">404</a></li>
+                                                        <li><a href="contact.html">Contact</a></li>
+                                                        <li><a href="coming-soon.html">Coming Soon</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="#">Shop Pages</a>
+                                                    <ul>
+                                                        <li><a href="shop.html">Shop</a></li>
+                                                        <li><a href="shop-left-sidebar.html">Shop Left sidebar</a></li>
+                                                        <li><a href="shop-right-sidebar.html">Shop right sidebar</a></li>
+                                                        <li><a href="shop-grid.html">Shop Grid</a></li>
+                                                        <li><a href="product-details.html">Shop details </a></li>
+                                                        <li><a href="cart.html">Cart</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="shop.html"><img src="../img/banner/menu-banner-1.png" alt="#"/></a>
+                                                </li>
+                                            </ul>
+                                        </li>
                                         <li><a href="contact.html">Contact</a></li>
-                                        </ul>
+                                        <li className="special-link"><a href="contact.html">GET A QUOTE</a></li>
+                                    </ul>
                                 </div>
                             </nav>
                         </div>

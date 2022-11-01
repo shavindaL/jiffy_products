@@ -22,7 +22,7 @@ function OrderDetails() {
             // fetch(`/api/users/${id}`)
             // .then(res => res.json)
             // .then(data => setCustomer(data))
-            const response = await fetch(`/api/orders/getasingleorder/${id}`)
+            const response = await fetch(`/api/orders/getasingleorder/6331aba3a729dcd9facc868f`)
             const json = await response.json()
             //console.log(json["name"])
             if (response.ok) {
@@ -61,8 +61,7 @@ function OrderDetails() {
                                         <div class="ltn__tab-menu-list mb-50">
                                             <div class="nav">
                                                 <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Overview</a>
-                                                <a data-toggle="tab" href="#liton_tab_1_2">Tracking Info</a>
-                                                <a data-toggle="tab" href="#liton_tab_1_3">Feedback</a>
+                                                <a data-toggle="tab" href="#liton_tab_1_3">Tracking Info</a>
                                             </div>
                                         </div>
                                     </div>
@@ -111,43 +110,9 @@ function OrderDetails() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="liton_tab_1_2">
+                                            <div class="tab-pane fade" id="liton_tab_1_3">
                                                 <div class="ltn__myaccount-tab-content-inner">
                                                     <p>Traking Info</p>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="liton_tab_1_3">
-                                            <div class="ltn__myaccount-tab-content-inner">
-                                                    <p>Feedback</p>
-                                                    <div class="ltn__form-box">
-                                                        <form >
-                                                            <div class="row mb-50">
-                                                                <div class="col-md-6">
-                                                                    <label>Name:</label>
-                                                                    <input type="text" name="ltn__name"
-                                                                         />
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label>Email:</label>
-                                                                    <input type="email" name="ltn__email"
-                                                                         />
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label>Phone:</label>
-                                                                    <input type="text" name="ltn__phone"
-                                                                         />
-                                                                </div>
-                                                                <div class="col-md-12">
-                                                                    <label>Address:</label>
-                                                                    <input type="text" name="ltn__email"
-                                                                         />
-                                                                </div>
-                                                            </div>                                                            
-                                                            <div class="btn-wrapper">
-                                                                <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Save Changes</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

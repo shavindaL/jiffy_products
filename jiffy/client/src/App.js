@@ -1,25 +1,26 @@
-//import './App.css';
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 
 import Home from './pages/Home';
 import ProductPage from "./pages/Shop";
-
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from "./pages/auth/Register";
 import AccountPage from './pages/Account';
 import OrderPage from './pages/OrderPage';
-
-import AddCustomerPayment from "./pages/dashboard/customerManagement/AddCustomerPayment";
-
 import LoginRedirect from './pages/redirect/LoginRedirect'
 import AccountRedirect from './pages/redirect/AccountRedirect';
-
 import CustomersPage from "./pages/dashboard/customerManagement/CustomersPage";
 import DashboardHome from './pages/dashboard/DashboardHome'
 import CustomerAddPage from "./pages/dashboard/customerManagement/CustomerAddPage"
 import CustomerProfilePage from "./pages/dashboard/customerManagement/CustomerProfile";
-import AccountUsagePage from './pages/dashboard/customerManagement/AccountUsagePage';
-import SiteFeedbackPage from './pages/dashboard/customerManagement/SiteFeedbackPage';
+import FactoryAddPage from "./pages/dashboard/factory/FactoryAddPage";
+import FactoryPage from "./pages/dashboard/factory/FactoryPage";
+import FactoryDetailsPage from "./pages/dashboard/factory/FactoryDetails";
+import MachineAddPage from "./pages/dashboard/machine/MachineAddPage";
+import MachinePage from "./pages/dashboard/machine/MachinePage";
+import MachineDetailsPage from "./pages/dashboard/machine/MachineDetails";
+import MachineStatsPage from "./pages/dashboard/machine/MachineStatsPage";
+import OrderRequestPage from "./pages/dashboard/factory/OrderRequestPage";
+import RawInsertPage from "./pages/dashboard/factory/RawInsertPage";
 
 function App() {
     return(
@@ -32,18 +33,22 @@ function App() {
                 <Route path="/signup" element={!localStorage.getItem('user')? <RegisterPage />:<Navigate to='/account-redirect'/>}/>
                 <Route path="/account" element={localStorage.getItem('user')? <AccountPage />:<Navigate to='/login-redirect'/>}/>
                 <Route path="/my-order/:id" element={localStorage.getItem('user')? <OrderPage />:<Navigate to='/login-redirect'/>}/>
-
-                <Route path="/AddCustomerPayment" element={localStorage.getItem('user')?<AddCustomerPayment />:<Navigate to='/login-redirect'/>}/>
-
                 <Route path="/login-redirect" element={<LoginRedirect />}/>
                 <Route path="/account-redirect" element={<AccountRedirect />}/>
-
                 <Route path="/dashboard" element={<DashboardHome />}/>
                 <Route path="/customers" element={<CustomersPage />}/>
                 <Route path="/customer/:id" element={<CustomerProfilePage />}/>
                 <Route path="/add-customer" element={<CustomerAddPage />}/>
-                <Route path="/profile-usage" element={<AccountUsagePage />}/>
-                <Route path="/site-feedbacks" element={<SiteFeedbackPage />}/>
+                <Route path="/add-factory" element={<FactoryAddPage />}/>
+                <Route path="/view-factory" element={<FactoryPage />}/>
+                <Route path="/factory-details/:id" element={<FactoryDetailsPage />}/>
+                <Route path="/add-machine" element={<MachineAddPage />}/>
+                <Route path="/view-machine" element={<MachinePage />}/>
+                <Route path="/machine-details/:id" element={<MachineDetailsPage />}/>
+                <Route path="/update-machine" element={<MachineStatsPage />}/>
+                <Route path="/order-request" element={<OrderRequestPage />}/>
+                <Route path="/raw-insert" element={<RawInsertPage />}/>
+
             </Routes>
         </BrowserRouter>  
     );

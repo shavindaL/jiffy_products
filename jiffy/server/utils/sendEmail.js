@@ -1,27 +1,26 @@
-var nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
 
-const sendEmail = (mailTo, mailSubject, message) => {
-
-  var transporter = nodemailer.createTransport({
+const sendEmail = (options) => {
+  const transporter = nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE,
     auth: {
       user: process.env.EMAIL_USERNAME,
-      pass: process.env.EMAIL_PASSWORD
-    }
+      pass: process.env.EMAIL_PASSWORD,
+    },
   });
-  
-  var mailOptions = {
+
+  const mailOptions = {
     from: process.env.EMAIL_FROM,
-    to: mailTo,
-    subject: mailSubject,
-    text: message
+    to: options.to,
+    subject: options.subject,
+    html: options.text,
   };
 
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err) {
+      console.log(err);
     } else {
-      console.log('Email sent: ' + info.response);
+      console.log(info);
     }
   });
 };
