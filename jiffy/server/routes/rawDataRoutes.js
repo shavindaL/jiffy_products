@@ -6,7 +6,7 @@ const {
 
 const router = express.Router()
 
-// POST a new RawData
+// POST a new RawDataa
 router.post('/', createRawData)
 
 module.exports = router
