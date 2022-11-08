@@ -1,22 +1,17 @@
 const express = require('express')
+
 const{
-    getAllProductOrders,
+    getAllproductOrders,
+    updateProductOrders
 
 } = require('../controllers/productOrderController')
 
 const router = express.Router()
 
 //Get all orders
-router.get('/', getAllProductOrders)
+router.get('/', getAllproductOrders)
 
-// //Post a new order
-// router.post('/', createSupplierOrder)
-
-// //Delete an order
-// router.delete('/:id', deleteSupplierOrder)
-
-// //Update a new order
-// router.patch('/:id', updateSupplierOrder)
-
+//Update an product order
+router.patch('/:id', updateProductOrders)
 
 module.exports = router

@@ -1,5 +1,5 @@
-const MachineStats = require('../models/MachineStats')
 const Machine = require("../models/Machine")
+const MachineStats = require('../models/MachineStats')
 
 // Create a new MachineStata
 const createMachineStats = async (req, res) => {
@@ -26,6 +26,14 @@ const createMachineStats = async (req, res) => {
     }
 }
 
+// Get all MachineStats
+const getAllMachineStats = async (req, res) => {
+    const machineStats = await MachineStats.find();
+    res.send(machineStats);
+}
+
+
 module.exports = { 
     createMachineStats,
+    getAllMachineStats
 }

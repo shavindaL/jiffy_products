@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const productOrderSchema = mongoose.Schema({
+const productOrderSchema = new mongoose.Schema({
 
 	currentDate: {
 		type: Date,
@@ -16,11 +16,12 @@ const productOrderSchema = mongoose.Schema({
 		required: true
 	},
 	status: {
-		type: String
+		type: String,
+		default: "Pending"
 	}
 
 })
 
 const productOrder = mongoose.model('productOrder', productOrderSchema)
 
-module.exports = productOrderSchema;
+module.exports = productOrder;

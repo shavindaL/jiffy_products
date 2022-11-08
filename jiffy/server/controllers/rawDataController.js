@@ -1,3 +1,4 @@
+const InventoryRaw = require("../models/InventoryRawMaterials")
 const RawData = require('../models/RawData')
 
 // Create a new RawData
@@ -14,6 +15,7 @@ const createRawData = async (req, res) => {
 
     try {
         const response = await RawData.create({currentDate, fId, rawMaterial, NoOfRaws: noOfRaws})
+        await InventoryRaw.findOneAndUpdate({ raw_material_name: rawMaterial }, { $inc: {qty_in_stock: -noOfRaws} })
         res.status(200).json(response)
     } catch (error) {
         res.status(400).json({ error: error.message })
