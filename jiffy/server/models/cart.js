@@ -12,6 +12,3 @@ quantity:{type:Number},
 const CART = mongoose.model('carts',cartSchema)
 
 module.exports = CART;
-
-
-
